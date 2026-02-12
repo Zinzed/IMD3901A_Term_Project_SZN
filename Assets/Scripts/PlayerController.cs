@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     float xRotation = 0f;
 
+    public Animator wandAnimator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,6 +47,11 @@ public class PlayerController : MonoBehaviour
 
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
+
+        if (Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            wandAnimator.SetTrigger("cast");
+        }
         
 
     }
