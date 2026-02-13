@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class enemyBehaviour : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class enemyBehaviour : MonoBehaviour
 
     private Vector3 target;
     private float changeTarget = 0.5f;
+
+    playerInteraction player;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,4 +44,12 @@ public class enemyBehaviour : MonoBehaviour
 
 
     }
+
+    /*public void kill()
+    {
+        if (isAimedAt && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            Destroy(gameObject);
+        }
+    }*/
 }

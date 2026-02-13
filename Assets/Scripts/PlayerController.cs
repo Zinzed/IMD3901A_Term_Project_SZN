@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             wandAnimator.SetTrigger("cast");
+            
         }
         
 
