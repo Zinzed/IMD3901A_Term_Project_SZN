@@ -3,49 +3,58 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class wandBehaviour : MonoBehaviour
 {
-    [Header("Materials")]
-    public Material[] materialColours;
+    [Header("Colours")]
+    public Color[] colours;
 
-    public MeshRenderer lightVisual;
+    public Renderer wandLight;
+    public ParticleSystem wandParticles;
+
 
     private int currentIndex = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        if (lightVisual == null)
-            lightVisual = GetComponent<MeshRenderer>();
-
-        if (lightVisual != null && materialColours != null && materialColours.Length > 0)
-        {
-            lightVisual.sharedMaterial = materialColours[0]; // Set the initial material
-        }
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            UpdateMaterial();
+            Debug.Log("Space key pressed");
+            //UpdateMaterial();
+            CycleColour();
         }
         
     }
 
-    void UpdateMaterial()
+    void CycleColour()
     {
-        if (lightVisual == null) return;
-
-       // if (Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame)
-        //{
-        // Increment index
+        // increment
         currentIndex++;
+        Debug.Log("Colour updated");
 
         // Wrap around
-        currentIndex %= materialColours.Length;
+        currentIndex %= colours.Length;
 
-        // Update material
-        lightVisual.sharedMaterial = materialColours[currentIndex];
-        //}
-    } 
+        // Update colour
+        SetColour(colours[currentIndex]);
+
+    }
+   
+
+    void SetColour(Color newColour)
+    {
+        // Change light color
+        if (wandLight != null)
+            wandLight.material.color = newColour;
+            wandLight.material.SetColor("_EmissionColor", newColour);
+
+        // Change particle color
+        if (wandParticles != null)
+        {
+            var main = wandParticles.main;
+            main.startColor = newColour;
+        }
+
+    }
+    
 }
+

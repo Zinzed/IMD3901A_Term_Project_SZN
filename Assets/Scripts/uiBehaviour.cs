@@ -7,15 +7,25 @@ public class uiBehaviour : MonoBehaviour
     public Color defaultCol = Color.white;
     public Color interactCol = Color.magenta;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Color currentEnemyColor;
+    private bool isOverEnemy = false;
+
+    public void SetCrosshairColor(Color enemyColor)
     {
-        
+        isOverEnemy = true;
+        currentEnemyColor = enemyColor;
+        crosshair.color = enemyColor;
     }
 
     public void SetInteract(bool canInteract)
     {
         crosshair.color = canInteract ? interactCol : defaultCol;
+    }
+
+    public void SetCrosshairToDefault()
+    {
+        isOverEnemy = false;
+        crosshair.color = defaultCol;
     }
 
     // Update is called once per frame

@@ -25,7 +25,7 @@ public class playerInteraction : MonoBehaviour
 
         if (Physics.SphereCast(playerCamera.transform.position, sphereRadius, playerCamera.transform.forward, out RaycastHit hit, interactRange))
         {
-            if (hit.collider.CompareTag("Interactable"))
+            if (hit.collider.CompareTag("Enemy"))
             {
                 canInteract = true;
 
