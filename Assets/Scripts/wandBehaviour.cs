@@ -8,7 +8,7 @@ public class wandBehaviour : MonoBehaviour
 
     public Renderer wandLight;
     public ParticleSystem wandParticles;
-
+    public Color CurrentColor { get; private set; }
 
     private int currentIndex = 0;
 
@@ -29,7 +29,6 @@ public class wandBehaviour : MonoBehaviour
     {
         // increment
         currentIndex++;
-        Debug.Log("Colour updated");
 
         // Wrap around
         currentIndex %= colours.Length;
@@ -42,6 +41,8 @@ public class wandBehaviour : MonoBehaviour
 
     void SetColour(Color newColour)
     {
+        CurrentColor = newColour;
+
         // Change light color
         if (wandLight != null)
             wandLight.material.color = newColour;

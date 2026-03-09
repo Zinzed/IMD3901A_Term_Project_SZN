@@ -5918,6 +5918,7 @@ MonoBehaviour:
   interactRange: 10
   playerCamera: {fileID: 1672842972}
   uiBehaviourScript: {fileID: 1888291984}
+  wandBehaviourScript: {fileID: 1111946687}
   canInteract: 0
 --- !u!1 &1417467553 stripped
 GameObject:
