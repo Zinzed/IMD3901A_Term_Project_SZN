@@ -19,7 +19,17 @@ public class uiBehaviour : MonoBehaviour
 
     public void SetInteract(bool canInteract)
     {
-        crosshair.color = canInteract ? interactCol : defaultCol;
+        // set to default/white if we aren't currently aiming at an enemy/interactable object
+        if (!canInteract)
+        {
+            isOverEnemy = false;
+            crosshair.color = defaultCol;
+        }
+        else if (!isOverEnemy)
+        {
+            // if inetractable but not an enemy use magenta
+            crosshair.color = interactCol;
+        }
     }
 
     public void SetCrosshairToDefault()

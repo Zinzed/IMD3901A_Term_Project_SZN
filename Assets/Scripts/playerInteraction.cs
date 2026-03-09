@@ -21,18 +21,44 @@ public class playerInteraction : MonoBehaviour
     void Update()
     {
         canInteract = false;
+        enemy = null; 
+
         float sphereRadius = 0.2f;
 
         if (Physics.SphereCast(playerCamera.transform.position, sphereRadius, playerCamera.transform.forward, out RaycastHit hit, interactRange))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                canInteract = true;
+               canInteract = true;
 
-                enemy = hit.collider.GetComponentInParent<enemyBehaviour>();
+                // Get enemy color from its material
+                Renderer enemyRenderer = hit.collider.GetComponentInChildren<Renderer>();
+                if (enemyRenderer != null)
+                {
+                    // Pass the detected enemy color to UI
+                    Color detectedColour = enemyRenderer.sharedMaterial.GetColor("_BaseColor");
+                    uiBehaviourScript.SetCrosshairColor(detectedColour);
+
+                    // Store enemy reference
+                    enemy = hit.collider.GetComponentInParent<enemyBehaviour>();
+
+                    Debug.Log("Hitting " + hit.collider.name + " Color: " + enemyRenderer.sharedMaterial.GetColor("_BaseColor"));
+                }
+
+            }
+            else
+            {
+                enemy = null;
+                uiBehaviourScript.SetCrosshairToDefault(); 
             }
         }
+        else
+        {
+            enemy = null;
+            uiBehaviourScript.SetCrosshairToDefault();
+        }
 
+        
         uiBehaviourScript.SetInteract(canInteract);
 
         if (enemy != null && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
