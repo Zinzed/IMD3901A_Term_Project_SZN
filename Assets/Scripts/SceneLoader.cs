@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public void DesktopScene()
+    [SerializeField]
+    public string scene;
+
+    //switch scene based on string entered in the inspector
+    public void next(string scene)
     {
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadSceneAsync(scene);
     }
 
-    public void VRScene()
-    {
-        SceneManager.LoadScene("MainGame_VR");
-    }
 }
