@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class wandBehaviour : MonoBehaviour
 {
     [Header("Colours")]
-    public Color[] colours;
+    public List<Color> colours = new List<Color>();
 
     public Renderer wandLight;
     public ParticleSystem wandParticles;
@@ -31,7 +32,7 @@ public class wandBehaviour : MonoBehaviour
         currentIndex++;
 
         // Wrap around
-        currentIndex %= colours.Length;
+        currentIndex %= colours.Count;
 
         // Update colour
         SetColour(colours[currentIndex]);

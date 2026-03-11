@@ -9,8 +9,10 @@ public class playerInteraction : MonoBehaviour
     public wandBehaviour wandBehaviourScript;
 
     public bool canInteract;
+    public int enemiesKilled;
 
     private enemyBehaviour enemy;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -73,6 +75,7 @@ public class playerInteraction : MonoBehaviour
             if (colorDiff < 0.1f) // 0.1 allows for tiny variations
             {
                 Destroy(enemy.gameObject, 1.2f);
+                enemiesKilled++;
                 Debug.Log("Color Match! Enemy Destroyed.");
             }
             else
@@ -80,5 +83,6 @@ public class playerInteraction : MonoBehaviour
                 Debug.Log("Wrong Color! Wand: " + wandColor + " vs Enemy: " + currentTargetColor);
             }
         }
+
     }
 }
