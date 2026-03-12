@@ -40,7 +40,7 @@ public class wandBehaviour : MonoBehaviour
     }
    
 
-    void SetColour(Color newColour)
+    public void SetColour(Color newColour)
     {
         CurrentColor = newColour;
 
