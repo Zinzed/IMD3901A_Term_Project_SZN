@@ -13,7 +13,9 @@ public class ConstellationPuzzle : MonoBehaviour
 
     //this function is called when a player interacts with a star
     public void AddStar(Vector3 pos, int id)
-    {   //adds star id to list
+    {
+        Debug.Log("Star num: " + id);
+        //adds star id to list
         playerInput.Add(id);
 
         //increases the number of lines based on amount of interaction
@@ -41,6 +43,7 @@ public class ConstellationPuzzle : MonoBehaviour
         //loops through the dots position in the list and sees if they match, if not is resets the puzzle
         for (int i = 0; i < correctOrder.Count; i++)
         {
+            Debug.Log("Expected: " + correctOrder[i] + " | Player: " + playerInput[i]);
             if (playerInput[i] != correctOrder[i])
             {
                 Debug.Log($"Mismatch at position {i}");

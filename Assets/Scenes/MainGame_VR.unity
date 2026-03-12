@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6862c67dba1d86241a793df6d49cabad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctOrder: 0100000003000000050000000200000004000000
+  correctOrder: 0100000002000000030000000400000005000000
   line: {fileID: 80588224}
 --- !u!120 &80588224
 LineRenderer:
