@@ -457,7 +457,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 369875701}
         m_TargetAssemblyTypeName: InstructionsManager, Assembly-CSharp
         m_MethodName: PreviousPage
         m_Mode: 1
@@ -1480,7 +1480,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 369875701}
         m_TargetAssemblyTypeName: InstructionsManager, Assembly-CSharp
         m_MethodName: PreviousPage
         m_Mode: 1
@@ -1749,7 +1749,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 369875701}
         m_TargetAssemblyTypeName: InstructionsManager, Assembly-CSharp
         m_MethodName: NextPage
         m_Mode: 1
@@ -2549,7 +2549,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 369875701}
         m_TargetAssemblyTypeName: InstructionsManager, Assembly-CSharp
         m_MethodName: NextPage
         m_Mode: 1
@@ -2705,7 +2705,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ee8c2e1a4fe086447b5ed5b8bf31d3da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a1da8a670d11b74fb4e460d4e78148c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2920,7 +2920,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: eefe3dcce933a0446996be23636c18a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74b5b65b5eed9a14fad187cc41c2a170, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

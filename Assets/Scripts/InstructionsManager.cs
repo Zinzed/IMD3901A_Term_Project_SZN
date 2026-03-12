@@ -13,7 +13,6 @@ public class InstructionsManager : MonoBehaviour
 
     private void Start()
     {
-
         // Initialize first page
         UpdatePageDisplay();
     }
