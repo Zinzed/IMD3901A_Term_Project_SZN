@@ -6,7 +6,7 @@ public class VRPlayerInteraction : MonoBehaviour
     public float interactRange = 10.0f;
     public Transform playerCamera; 
     public uiBehaviour uiBehaviourScript;
-    public wandBehaviour wandBehaviourScript;
+    public VRWandBehaviour wandBehaviourScript;
 
     public bool canInteract;
     public int enemiesKilled;
