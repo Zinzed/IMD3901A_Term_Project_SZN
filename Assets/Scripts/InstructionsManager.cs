@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class InstructionsManager : MonoBehaviour
 {
+
+    public AudioSource secondaryBttnSFX;
+
     [Header("UI References")]
     [SerializeField] private Button nextBttn;
     [SerializeField] private Button previousBttn;
@@ -23,6 +26,7 @@ public class InstructionsManager : MonoBehaviour
         {
             currentPageIndex++;
             UpdatePageDisplay();
+            secondaryBttnSFX.Play();
         }
     }
 
@@ -32,6 +36,7 @@ public class InstructionsManager : MonoBehaviour
         {
             currentPageIndex--;
             UpdatePageDisplay();
+            secondaryBttnSFX.Play();
         }
     }
 
