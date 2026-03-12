@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class VRPlayerInteraction : MonoBehaviour
 {
     public float interactRange = 10.0f;
-    public Transform playerCamera; // VR Camera (usually XR Origin/Camera Offset/Main Camera)
+    public Transform playerCamera; 
     public uiBehaviour uiBehaviourScript;
     public wandBehaviour wandBehaviourScript;
 
@@ -25,7 +25,7 @@ public class VRPlayerInteraction : MonoBehaviour
         Color currentTargetColor = Color.clear;
         float sphereRadius = 0.2f;
 
-        // Raycast from camera position forward
+       
         Vector3 rayOrigin = playerCamera != null ? playerCamera.position : transform.position;
         Vector3 rayDirection = playerCamera != null ? playerCamera.forward : transform.forward;
 
@@ -35,15 +35,15 @@ public class VRPlayerInteraction : MonoBehaviour
             {
                 canInteract = true;
 
-                // Get enemy color from its material
+                //get enemy color from its material
                 Renderer enemyRenderer = hit.collider.GetComponentInChildren<Renderer>();
                 if (enemyRenderer != null)
                 {
-                    // Pass the detected enemy color to UI
+                    //pass the detected color to UI
                     currentTargetColor = enemyRenderer.sharedMaterial.GetColor("_BaseColor");
                     uiBehaviourScript.SetCrosshairColor(currentTargetColor);
 
-                    // Store enemy reference
+                    //Store reference
                     enemy = hit.collider.GetComponentInParent<enemyBehaviour>();
                 }
             }
