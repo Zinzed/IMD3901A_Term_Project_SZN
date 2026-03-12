@@ -3,8 +3,8 @@ using UnityEngine;
 public class TelescopeView : MonoBehaviour
 {
    
-    public Camera mainCamera;
-    public Camera telescopeCamera;
+    public GameObject mainCamera;
+    public GameObject telescopeCamera;
 
     private bool usingTelescope = false;
 
@@ -13,8 +13,8 @@ public class TelescopeView : MonoBehaviour
         Debug.Log("Telescope on");
         usingTelescope = !usingTelescope;
 
-        mainCamera.enabled = !usingTelescope;
-        telescopeCamera.enabled = usingTelescope;
+        mainCamera.SetActive(!usingTelescope);
+        telescopeCamera.SetActive(usingTelescope);
     }
 
 }
