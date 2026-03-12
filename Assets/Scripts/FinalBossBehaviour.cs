@@ -35,10 +35,10 @@ public class FinalBossBehaviour : MonoBehaviour
 
     void Update()
     {
-        
-        if (bossSpawned) return; 
 
-  
+        if (bossSpawned) return;
+
+
 
         // check if the number of killed enemies matches the total found at the start
         if (playerInteraction.enemiesKilled >= totalEnemiesToKill && totalEnemiesToKill > 0)
