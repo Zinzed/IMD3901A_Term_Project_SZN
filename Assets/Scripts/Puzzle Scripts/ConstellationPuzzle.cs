@@ -4,7 +4,7 @@ using UnityEngine;
 public class ConstellationPuzzle : MonoBehaviour
 {
     //saves the correct order to connect the dots/stars
-    public List<int> correctOrder = new List<int>() { 1, 2, 3, 4, 5 };
+    public List<int> correctOrder = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
     //list that saves the order the player connected them in
     private List<int> playerInput = new List<int>();
 
