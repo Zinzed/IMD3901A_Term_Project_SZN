@@ -1,28 +1,58 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using System.Collections.Generic;
 
 public class InstructionsManager : MonoBehaviour
 {
-    public Button nextBttn;
-    public Button previousBttn;
-    public GameObject InstructionsPanel1;
-    public GameObject InstructionsPanel2;
+    [Header("UI References")]
+    [SerializeField] private Button nextBttn;
+    [SerializeField] private Button previousBttn;
+    [SerializeField] private List<GameObject> instructionPages;
 
-    //GameObject myObject;
+    private int currentPageIndex = 0;
+
+    private void Start()
+    {
+
+        // Initialize first page
+        UpdatePageDisplay();
+    }
+
     public void NextPage()
     {
-        InstructionsPanel2.SetActive(true);
-        InstructionsPanel1.SetActive(false);
-        nextBttn.interactable = false;
-        previousBttn.interactable = true;
+        if (currentPageIndex < instructionPages.Count - 1)
+        {
+            currentPageIndex++;
+            UpdatePageDisplay();
+        }
     }
 
     public void PreviousPage()
     {
-        InstructionsPanel2.SetActive(false);
-        InstructionsPanel1.SetActive(true);
-        nextBttn.interactable = true;
-        previousBttn.interactable = false;
+        if (currentPageIndex > 0)
+        {
+            currentPageIndex--;
+            UpdatePageDisplay();
+        }
+    }
+
+    private void UpdatePageDisplay()
+    {
+        // hide all pages
+        foreach (var page in instructionPages)
+        {
+            if (page != null)
+                page.SetActive(false);
+        }
+
+        // show current page
+        if (currentPageIndex >= 0 && currentPageIndex < instructionPages.Count)
+        {
+            instructionPages[currentPageIndex].SetActive(true);
+        }
+
+        // update button states
+        nextBttn.interactable = currentPageIndex + 1 < instructionPages.Count;
+        previousBttn.interactable = currentPageIndex > 0;
     }
 }
