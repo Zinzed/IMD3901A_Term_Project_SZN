@@ -8,7 +8,9 @@ public class FinalBossBehaviour : MonoBehaviour
 
     private Transform playerTransform;
     private playerInteraction playerInteraction;
+    private VRPlayerInteraction vrInteraction;
     private wandBehaviour wandBehaviour;
+    private VRWandBehaviour vrWandBehaviour;
     private int totalEnemiesToKill;
     private bool bossSpawned = false;
 
@@ -21,7 +23,9 @@ public class FinalBossBehaviour : MonoBehaviour
         {
             playerTransform = player.transform;
             playerInteraction = player.GetComponent<playerInteraction>();
+            vrInteraction = player.GetComponent<VRPlayerInteraction>();
             wandBehaviour = player.GetComponentInChildren<wandBehaviour>();
+            vrWandBehaviour = player.GetComponentInChildren<VRWandBehaviour>();
         }
 
 
@@ -31,6 +35,7 @@ public class FinalBossBehaviour : MonoBehaviour
         if (finalBoss != null)
             finalBoss.SetActive(false);
 
+        Debug.Log("Total enemies to kill: " + totalEnemiesToKill);
     }
 
     void Update()
@@ -38,10 +43,27 @@ public class FinalBossBehaviour : MonoBehaviour
 
         if (bossSpawned) return;
 
+        if (playerInteraction == null && vrInteraction == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                playerTransform = player.transform;
+                playerInteraction = player.GetComponent<playerInteraction>();
+                vrInteraction = player.GetComponent<VRPlayerInteraction>();
+                wandBehaviour = player.GetComponentInChildren<wandBehaviour>();
+                vrWandBehaviour = player.GetComponentInChildren<VRWandBehaviour>();
+            }
+            return;
+        }
 
+        int currentKills = 0;
+        if (playerInteraction != null) currentKills = playerInteraction.enemiesKilled;
+        else if (vrInteraction != null) currentKills = vrInteraction.enemiesKilled;
+        else return; // Still haven't found a player script, so stop here
 
         // check if the number of killed enemies matches the total found at the start
-        if (playerInteraction.enemiesKilled >= totalEnemiesToKill && totalEnemiesToKill > 0)
+        if (currentKills >= totalEnemiesToKill && totalEnemiesToKill > 0)
         {
             SpawnBoss();
         }
@@ -66,10 +88,20 @@ public class FinalBossBehaviour : MonoBehaviour
         Color darkPurple;
         ColorUtility.TryParseHtmlString("#261D5B", out darkPurple); // converts hexcode to colour
 
-        // "combine"/clear all colours/powers for a new one to defeat final boss 
-        wandBehaviour.SetColour(darkPurple);
-        wandBehaviour.colours.Clear();
-        wandBehaviour.colours.Add(darkPurple);
+        if (wandBehaviour != null) {
+
+            // "combine"/clear all colours/powers for a new one to defeat final boss 
+            wandBehaviour.SetColour(darkPurple);
+            wandBehaviour.colours.Clear();
+            wandBehaviour.colours.Add(darkPurple);
+        }
+
+        else if (vrWandBehaviour != null)
+        {
+            vrWandBehaviour.SetColour(darkPurple);
+            vrWandBehaviour.colours.Clear();
+            vrWandBehaviour.colours.Add(darkPurple);
+        }
     }
 
     void Teleport()

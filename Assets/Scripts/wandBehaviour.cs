@@ -28,6 +28,13 @@ public class wandBehaviour : MonoBehaviour
 
     void CycleColour()
     {
+
+        // If the list is empty, stop here 
+        if (colours.Count == 0)
+        {
+            Debug.LogWarning("Cannot cycle colours: The list is empty!");
+            return;
+        }
         // increment
         currentIndex++;
 

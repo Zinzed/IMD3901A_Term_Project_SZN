@@ -12,6 +12,8 @@ public class playerInteraction : MonoBehaviour
     public int enemiesKilled;
 
     private enemyBehaviour enemy;
+    private int bossHits = 0;
+    public int requiredBossHits = 3;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,15 +26,15 @@ public class playerInteraction : MonoBehaviour
     void Update()
     {
         canInteract = false;
-        enemy = null; 
+        enemy = null;
         Color currentTargetColor = Color.clear;
         float sphereRadius = 0.2f;
 
         if (Physics.SphereCast(playerCamera.transform.position, sphereRadius, playerCamera.transform.forward, out RaycastHit hit, interactRange))
         {
-            if (hit.collider.CompareTag("Enemy"))
+            if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("FinalEnemy"))
             {
-               canInteract = true;
+                canInteract = true;
 
                 // Get enemy color from its material
                 Renderer enemyRenderer = hit.collider.GetComponentInChildren<Renderer>();
@@ -52,7 +54,7 @@ public class playerInteraction : MonoBehaviour
             else
             {
                 enemy = null;
-                uiBehaviourScript.SetCrosshairToDefault(); 
+                uiBehaviourScript.SetCrosshairToDefault();
             }
         }
         else
@@ -61,7 +63,7 @@ public class playerInteraction : MonoBehaviour
             uiBehaviourScript.SetCrosshairToDefault();
         }
 
-        
+
         uiBehaviourScript.SetInteract(canInteract);
 
         if (enemy != null && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
@@ -74,9 +76,17 @@ public class playerInteraction : MonoBehaviour
 
             if (colorDiff < 0.1f) // 0.1 allows for tiny variations
             {
-                Destroy(enemy.gameObject, 1.2f);
-                enemiesKilled++;
-                Debug.Log("Color Match! Enemy Destroyed.");
+                // Check if this enemy is actually the Boss
+                if (enemy.CompareTag("FinalEnemy"))
+                {
+                    HandleBossHit(enemy.gameObject);
+                }
+                else
+                {
+                    // Normal enemy logic
+                    Destroy(enemy.gameObject, 1.2f);
+                    enemiesKilled++;
+                }
             }
             else
             {
@@ -84,5 +94,18 @@ public class playerInteraction : MonoBehaviour
             }
         }
 
+    }
+
+    void HandleBossHit(GameObject bossObj)
+    {
+        bossHits++;
+        Debug.Log($"Boss Hit! {bossHits}/{requiredBossHits}");
+
+        if (bossHits >= requiredBossHits)
+        {
+            Destroy(bossObj, 0.5f);
+            Debug.Log("Final Boss Defeated!");
+            //Trigger victory screen or next scene
+        }
     }
 }
