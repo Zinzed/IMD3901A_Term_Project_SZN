@@ -45,22 +45,34 @@ public class FinalBossBehaviour : MonoBehaviour
 
         if (playerInteraction == null && vrInteraction == null)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+            foreach (GameObject p in players)
             {
-                playerTransform = player.transform;
-                playerInteraction = player.GetComponent<playerInteraction>();
-                vrInteraction = player.GetComponent<VRPlayerInteraction>();
-                wandBehaviour = player.GetComponentInChildren<wandBehaviour>();
-                vrWandBehaviour = player.GetComponentInChildren<VRWandBehaviour>();
+                // ONLY lock onto the player that is actually active/enabled
+                if (p.activeInHierarchy)
+                {
+                    playerTransform = p.transform;
+                    playerInteraction = p.GetComponent<playerInteraction>();
+                    vrInteraction = p.GetComponent<VRPlayerInteraction>();
+                    wandBehaviour = p.GetComponentInChildren<wandBehaviour>();
+                    vrWandBehaviour = p.GetComponentInChildren<VRWandBehaviour>();
+
+                    if (playerInteraction != null || vrInteraction != null)
+                    {
+                        Debug.Log("Locked onto ACTIVE player: " + p.name);
+                        break;
+                    }
+                }
             }
             return;
         }
-
         int currentKills = 0;
         if (playerInteraction != null) currentKills = playerInteraction.enemiesKilled;
         else if (vrInteraction != null) currentKills = vrInteraction.enemiesKilled;
         else return; // Still haven't found a player script, so stop here
+
+        Debug.Log("Current Kills: " + currentKills + " / Goal: " + totalEnemiesToKill);
 
         // check if the number of killed enemies matches the total found at the start
         if (currentKills >= totalEnemiesToKill && totalEnemiesToKill > 0)
