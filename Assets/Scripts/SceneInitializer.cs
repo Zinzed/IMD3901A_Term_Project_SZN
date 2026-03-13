@@ -18,6 +18,7 @@ public class SceneInitializer : MonoBehaviour
             {
                 DesktopPlayer.SetActive(true);
                 VRPlayer.SetActive(false);
+                Debug.Log("Desktop player chosen");
 
             }
             // Enable HMD player
@@ -25,6 +26,7 @@ public class SceneInitializer : MonoBehaviour
             {
                 VRPlayer.SetActive(true);
                 DesktopPlayer.SetActive(false);
+                Debug.Log("VR player chosen");
 
             }
         }

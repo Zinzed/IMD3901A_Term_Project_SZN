@@ -22,15 +22,8 @@ public class DataManager : MonoBehaviour
 
     public void SetButtonState(int buttonId)
     {
-        //desktop button
-        if (buttonId == 1)
-        {
-            button1Clicked = true;
-        }
-        //HMD button
-        else if (buttonId == 2)
-        {
-            button2Clicked = true;
-        }
+        button1Clicked = (buttonId == 1); //desktop button
+        button2Clicked = (buttonId == 2); //HMD button
+
     }
 }
