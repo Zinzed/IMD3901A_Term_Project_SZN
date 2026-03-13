@@ -14,14 +14,14 @@ public class VRWandBehaviour : MonoBehaviour
 
     void Start()
     {
-        // Initialize with first color if list isn't empty
+        //Initializes with first color if list isnt empty
         if (colours.Count > 0)
         {
             SetColour(colours[0]);
         }
     }
 
-    // Public method that can be called from anywhere
+    //Public function called from wand grab interactable component
     public void CycleColour()
     {
         if (colours.Count == 0) return;
@@ -37,14 +37,14 @@ public class VRWandBehaviour : MonoBehaviour
     {
         CurrentColor = newColour;
 
-        // Change light color
+        //change light color
         if (wandLight != null)
         {
             wandLight.material.color = newColour;
             wandLight.material.SetColor("_EmissionColor", newColour);
         }
 
-        // Change particle color
+        //change particle color
         if (wandParticles != null)
         {
             var main = wandParticles.main;
