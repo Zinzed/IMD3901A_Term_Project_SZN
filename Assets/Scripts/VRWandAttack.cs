@@ -4,46 +4,38 @@ public class VRWandAttack : MonoBehaviour
 {
     public VRWandBehaviour wandBehaviour;
 
-    public float minSwingRotation = 150f;
-    private Quaternion lastRotation;
-    private float rotationSpeed;
-
-    void Update()
-    {
-        rotationSpeed = Quaternion.Angle(transform.rotation, lastRotation) / Time.deltaTime;
-        lastRotation = transform.rotation;
-        Debug.Log(rotationSpeed);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Enemy"))
-            return;
-
-        // check if the wand is rotating fast enough
-        if (rotationSpeed < minSwingRotation)
-        {
-            Debug.Log("Swing not strong enough");
-            return;
-        }
-
         enemyBehaviour enemy = other.GetComponentInParent<enemyBehaviour>();
+
         if (enemy == null)
             return;
 
+        Debug.Log("Enemy touched!");
+
+        // get enemy color
         Renderer enemyRenderer = other.GetComponentInChildren<Renderer>();
         if (enemyRenderer == null)
             return;
 
         Color enemyColor = enemyRenderer.material.GetColor("_BaseColor");
+
+        // get wand color
         Color wandColor = wandBehaviour.CurrentColor;
 
-        float colorDiff = Vector4.Distance(enemyColor, wandColor);
+        Debug.Log("Enemy color: " + enemyColor);
+        Debug.Log("Wand color: " + wandColor);
 
-        if (colorDiff < 0.1f)
+        // compare colors
+        float colorDiff = Vector3.Distance(
+            new Vector3(enemyColor.r, enemyColor.g, enemyColor.b),
+            new Vector3(wandColor.r, wandColor.g, wandColor.b)
+        );
+
+        if (colorDiff < 0.15f)
         {
-            Destroy(enemy.gameObject, 1.2f);
-            Debug.Log("Enemy destroyed!");
+            Destroy(enemy.gameObject);
+            Debug.Log("Correct color! Enemy destroyed.");
         }
         else
         {

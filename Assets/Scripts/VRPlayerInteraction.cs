@@ -23,7 +23,7 @@ public class VRPlayerInteraction : MonoBehaviour
         canInteract = false;
         enemy = null;
         Color currentTargetColor = Color.clear;
-        float sphereRadius = 0.2f;
+        float sphereRadius = 0.9f;
 
        
         Vector3 rayOrigin = playerCamera != null ? playerCamera.position : transform.position;
