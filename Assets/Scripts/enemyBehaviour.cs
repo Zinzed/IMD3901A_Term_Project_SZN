@@ -54,16 +54,17 @@ public class enemyBehaviour : MonoBehaviour
         );
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Collided with: {collision.gameObject.name}"); // Check if this appears
-        if (collision.gameObject.CompareTag("Player"))
+        Debug.Log($"Triggered with: {other.gameObject.name}"); // Debug to confirm trigger
+
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Player hit!"); // Confirm player detection
-            health playerHealth = collision.gameObject.GetComponent<health>();
+            Debug.Log("Player triggered!"); // Confirm player detection
+            health playerHealth = other.GetComponent<health>();
             if (playerHealth != null)
             {
-                playerHealth.UpdateHealth(-1);
+                playerHealth.UpdateHealth(-1); // Deduct health
             }
             else
             {
