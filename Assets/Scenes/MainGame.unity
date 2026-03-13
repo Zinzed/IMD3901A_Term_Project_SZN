@@ -617,6 +617,43 @@ MonoBehaviour:
   wandBehaviourScript: {fileID: 538477108}
   canInteract: 0
   enemiesKilled: 0
+--- !u!114 &177661472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177661461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ddf17d36162e2740949c1463e960d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthText: {fileID: 1505178227}
+--- !u!136 &177661473
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177661461}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7069831
+  m_Height: 4.134081
+  m_Direction: 1
+  m_Center: {x: -0.0000000043983324, y: 1.5670404, z: -0.20698309}
 --- !u!1 &185081409
 GameObject:
   m_ObjectHideFlags: 0
@@ -12201,7 +12238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!143 &1411060195
 CharacterController:
   m_ObjectHideFlags: 0
@@ -17854,7 +17891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8692700856744270657, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8965462376893008444, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
       propertyPath: m_InAirControlModifier
@@ -17871,6 +17908,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8692700856744270657, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 177661467}
+    - targetCorrespondingSourceObject: {fileID: 8692700856744270657, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 177661473}
+    - targetCorrespondingSourceObject: {fileID: 8692700856744270657, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 177661472}
   m_SourcePrefab: {fileID: 100100000, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
 --- !u!1 &1560869523
 GameObject:
