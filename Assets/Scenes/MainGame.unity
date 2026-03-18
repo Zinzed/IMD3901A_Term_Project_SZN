@@ -1702,6 +1702,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7da23594919f20541806e8d6db0ca43f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1111946687}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7da23594919f20541806e8d6db0ca43f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1111946688}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7da23594919f20541806e8d6db0ca43f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1111946689}
   m_SourcePrefab: {fileID: 100100000, guid: 7da23594919f20541806e8d6db0ca43f, type: 3}
 --- !u!1 &362258296 stripped
 GameObject:
@@ -11287,6 +11293,55 @@ MonoBehaviour:
   - {r: 0.5019608, g: 0.84313726, b: 0.95686275, a: 1}
   wandLight: {fileID: 1764613435}
   wandParticles: {fileID: 856872318}
+--- !u!64 &1111946688
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111946684}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
+--- !u!54 &1111946689
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111946684}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &1116629166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12238,7 +12293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!143 &1411060195
 CharacterController:
   m_ObjectHideFlags: 0
@@ -12316,6 +12371,7 @@ MonoBehaviour:
   wandBehaviourScript: {fileID: 1111946687}
   canInteract: 0
   enemiesKilled: 0
+  requiredBossHits: 3
 --- !u!136 &1411060199
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17555,7 +17611,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1ff3c4a39151cf43bc8eed91ef0ecff, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1518627372}
+      addedObject: {fileID: 1518627375}
   m_SourcePrefab: {fileID: 100100000, guid: c1ff3c4a39151cf43bc8eed91ef0ecff, type: 3}
 --- !u!4 &1518627370 stripped
 Transform:
@@ -17567,7 +17623,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c1ff3c4a39151cf43bc8eed91ef0ecff, type: 3}
   m_PrefabInstance: {fileID: 1518627369}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1518627372
+--- !u!64 &1518627375
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17891,7 +17947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8692700856744270657, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8965462376893008444, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
       propertyPath: m_InAirControlModifier
@@ -18148,7 +18204,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2034837043178325013, guid: 997ef39a8947f074782ce9a19265ba57, type: 3}
 --- !u!54 &1570446114
@@ -20061,7 +20117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: af78d9e290c65254b80ef6b7e9434498, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.9
+      value: -9.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: af78d9e290c65254b80ef6b7e9434498, type: 3}
       propertyPath: m_LocalPosition.z
