@@ -111,7 +111,7 @@ public class MessagesManager : MonoBehaviour
     private void UpdateMessages()
     {
 
-        startBttn.SetActive(false);
+        //startBttn.SetActive(false);
 
         // stop any ongoing typing coroutine
         if (typingCoroutine != null)
