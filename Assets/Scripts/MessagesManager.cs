@@ -23,6 +23,7 @@ public class MessagesManager : MonoBehaviour
     void Start()
     {
         UpdateMessages();
+        startBttn.SetActive(false);
     }
 
     IEnumerator TypeText(TMP_Text textComponent)
@@ -59,7 +60,9 @@ public class MessagesManager : MonoBehaviour
         if (typingCoroutine == null && currentBubbleIndex == messageBubbles.Count - 1)
         {
             startBttn.SetActive(true);
+            nextBttn.interactable = false;
         }
+        
     }
 
     public void NextBubble()
@@ -86,6 +89,10 @@ public class MessagesManager : MonoBehaviour
             currentBubbleIndex--;
             UpdateMessages();
         }
+
+        
+
+        
     }
 
     public void SkipToEnd()
@@ -103,6 +110,9 @@ public class MessagesManager : MonoBehaviour
 
     private void UpdateMessages()
     {
+
+        startBttn.SetActive(false);
+
         // stop any ongoing typing coroutine
         if (typingCoroutine != null)
         {
