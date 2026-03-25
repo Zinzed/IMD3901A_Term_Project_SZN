@@ -72,7 +72,7 @@ public class FinalBossBehaviour : MonoBehaviour
         else if (vrInteraction != null) currentKills = vrInteraction.enemiesKilled;
         else return; // Still haven't found a player script, so stop here
 
-        Debug.Log("Current Kills: " + currentKills + " / Goal: " + totalEnemiesToKill);
+        //Debug.Log("Current Kills: " + currentKills + " / Goal: " + totalEnemiesToKill);
 
         // check if the number of killed enemies matches the total found at the start
         if (currentKills >= totalEnemiesToKill && totalEnemiesToKill > 0)

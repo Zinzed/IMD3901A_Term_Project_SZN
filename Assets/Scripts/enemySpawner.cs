@@ -6,14 +6,16 @@ public class enemySpawner : MonoBehaviour
 {
     public GameObject[] enemies;
     public int numOfEnemies;
-    public float spawnRadius = 5.0f;
+    public float spawnRadius;
     private int enemyIndex;
     private int enemyCount;
+
+    private bool canSpawn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Spawn();
+        canSpawn = true;
     }
 
     // Update is called once per frame
@@ -21,7 +23,7 @@ public class enemySpawner : MonoBehaviour
     {
         enemyIndex = EnemyType();
 
-        if (enemyCount < numOfEnemies)
+        if (canSpawn)
         {
             Spawn();
         }   
@@ -38,10 +40,10 @@ public class enemySpawner : MonoBehaviour
         Instantiate(enemies[enemyIndex], spawnPos, Quaternion.identity);
         enemyCount++;
 
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Debug.Log("Space key pressed");
-            
-        //}
+        if (enemyCount == numOfEnemies)
+        {
+            canSpawn = false;
+            //Debug.Log("Max enemies spawned");
+        }
     }
 }
