@@ -384,8 +384,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Okay my ship got overrun and they drained almost all my magic.  I'm trapped
-    and I'm using the last spark I have to reach you (\u2565_\u2565)"
+  m_text: Okay my ship got overrun and they drained almost all my magic.  I'm trapped
+    and I'm using the last spark I have to reach you (T_T)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
   m_sharedMaterial: {fileID: 7627370505618386333, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
