@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MessagesManager : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class MessagesManager : MonoBehaviour
     [SerializeField] private bool autoAdvance = true; // Toggle for auto-advance feature
 
     public AudioSource notificationSFX;
+
+    [SerializeField] private GameObject startBttn;
+    [SerializeField] private Button nextBttn;
+    [SerializeField] private Button previousBttn;
 
     private int currentBubbleIndex = 0;
     private Coroutine typingCoroutine;
@@ -30,15 +35,30 @@ public class MessagesManager : MonoBehaviour
         {
             textComponent.maxVisibleCharacters++;
             yield return new WaitForSeconds(m_DelayBetweenCharacters);
+
+            // disable next previous buttons while still typing 
+            nextBttn.interactable = false;
+            previousBttn.interactable = false;
         }
+
+        nextBttn.interactable = true;
+        previousBttn.interactable = true;
 
         typingCoroutine = null;
 
         // go to next bubble if there is one
         if (autoAdvance && currentBubbleIndex < messageBubbles.Count - 1)
         {
+      
             yield return new WaitForSeconds(0.8f); // small pause between messages
             NextBubble();
+        }
+
+        // if done typing for last message show start button
+
+        if (typingCoroutine == null && currentBubbleIndex == messageBubbles.Count - 1)
+        {
+            startBttn.SetActive(true);
         }
     }
 
