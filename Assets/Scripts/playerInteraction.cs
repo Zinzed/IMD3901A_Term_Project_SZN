@@ -15,6 +15,9 @@ public class playerInteraction : MonoBehaviour
     private int bossHits = 0;
     public int requiredBossHits = 3;
 
+    //PUZZLE
+    public ConstellationPuzzle puzzleScript;
+    public TelescopeView teleView;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,6 +53,38 @@ public class playerInteraction : MonoBehaviour
                     //Debug.Log("Hitting " + hit.collider.name + " Color: " + enemyRenderer.sharedMaterial.GetColor("_BaseColor"));
                 }
 
+            }
+            //FOR STAR OBJECTS
+            else if(hit.collider.CompareTag("Star"))
+            {
+                canInteract = true;
+                //PUZZLE STAR POSITION DETECTION
+                if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+                {
+                    StarNum star = hit.collider.GetComponent<StarNum>();
+                    if (star != null)
+                    {
+                        // Pass the star's world position and ID to your puzzle logic
+                        puzzleScript.AddStar(star.transform.position, star.starID);
+                    }
+                }
+            }
+            //FOR TELESCOPE
+            else if(hit.collider.CompareTag("Telescope"))
+            {
+                canInteract = true;
+                if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+                {
+  
+                   teleView.ToggleTelescope();
+                   return;
+                }
+
+            }
+            //FOR OTHER INTERACTABLE OBJECTS
+            else if (hit.collider.CompareTag("Interactable"))
+            {
+                canInteract = true;
             }
             else
             {

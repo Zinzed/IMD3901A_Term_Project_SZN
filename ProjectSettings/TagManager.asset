@@ -7,6 +7,8 @@ TagManager:
   - Interactable
   - Enemy
   - FinalEnemy
+  - Star
+  - Telescope
   layers:
   - Default
   - TransparentFX
