@@ -126,7 +126,7 @@ public class MessagesManager : MonoBehaviour
             if (messageBubbles[i] != null)
             {
                 // show bubbles up to current index, hide future ones
-                messageBubbles[i].SetActive(i <= currentBubbleIndex);
+                messageBubbles[i].SetActive(i == currentBubbleIndex);
                 notificationSFX.Play();
             }
         }
@@ -139,6 +139,7 @@ public class MessagesManager : MonoBehaviour
 
             if (currentTextComponent != null)
             {
+                currentTextComponent.maxVisibleCharacters = 0;
                 typingCoroutine = StartCoroutine(TypeText(currentTextComponent));
             }
         }
