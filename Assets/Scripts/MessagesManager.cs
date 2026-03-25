@@ -5,9 +5,11 @@ using System.Collections.Generic;
 
 public class MessagesManager : MonoBehaviour
 {
-    [SerializeField] private float m_DelayBetweenCharacters = 0.05f;
+    [SerializeField] private float m_DelayBetweenCharacters = 0.02f;
     [SerializeField] private List<GameObject> messageBubbles;
     [SerializeField] private bool autoAdvance = true; // Toggle for auto-advance feature
+
+    public AudioSource notificationSFX;
 
     private int currentBubbleIndex = 0;
     private Coroutine typingCoroutine;
@@ -32,17 +34,17 @@ public class MessagesManager : MonoBehaviour
 
         typingCoroutine = null;
 
-        // Automatically go to next bubble if there is one
+        // go to next bubble if there is one
         if (autoAdvance && currentBubbleIndex < messageBubbles.Count - 1)
         {
-            yield return new WaitForSeconds(0.5f); // Optional small pause between messages
+            yield return new WaitForSeconds(0.8f); // small pause between messages
             NextBubble();
         }
     }
 
     public void NextBubble()
     {
-        // Can't go to next if we're still typing
+        // cant go to next if we're still typing
         if (typingCoroutine != null)
             return;
 
@@ -55,7 +57,7 @@ public class MessagesManager : MonoBehaviour
 
     public void PreviousBubble()
     {
-        // Can't go to previous if we're still typing
+        // cant go to previous if we're still typing
         if (typingCoroutine != null)
             return;
 
@@ -68,37 +70,38 @@ public class MessagesManager : MonoBehaviour
 
     public void SkipToEnd()
     {
-        // Immediately show full text of current message
+        // immediately show full text of current message
         if (typingCoroutine != null && currentTextComponent != null)
         {
             StopCoroutine(typingCoroutine);
             typingCoroutine = null;
 
-            // Show all characters of the current text
+            // show all characters of the current text
             currentTextComponent.maxVisibleCharacters = currentTextComponent.text.Length;
         }
     }
 
     private void UpdateMessages()
     {
-        // Stop any ongoing typing coroutine
+        // stop any ongoing typing coroutine
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
             typingCoroutine = null;
         }
 
-        // Show ALL bubbles up to current index, hide future ones
+        // show all bubbles up to current index, hide future ones
         for (int i = 0; i < messageBubbles.Count; i++)
         {
             if (messageBubbles[i] != null)
             {
-                // Show bubbles up to current index, hide future ones
+                // show bubbles up to current index, hide future ones
                 messageBubbles[i].SetActive(i <= currentBubbleIndex);
+                notificationSFX.Play();
             }
         }
 
-        // Only type the current message (the newest one)
+        // only type the current message (the newest one)
         if (currentBubbleIndex >= 0 && currentBubbleIndex < messageBubbles.Count)
         {
             GameObject currentBubble = messageBubbles[currentBubbleIndex];
@@ -110,7 +113,7 @@ public class MessagesManager : MonoBehaviour
             }
         }
     }
-    // Optional: Public method to reset to first message
+    // reset to first message
     public void ResetToFirst()
     {
         currentBubbleIndex = 0;
