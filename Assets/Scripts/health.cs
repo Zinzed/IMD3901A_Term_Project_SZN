@@ -9,12 +9,10 @@ public class health : MonoBehaviour
 
     public Slider slider;
 
-    public TextMeshProUGUI healthText;
 
     void Start()
     {
         currentHealth = maxHealth;
-        UpdateHealthText();
     }
 
     // Made public so enemies can access it
@@ -23,7 +21,6 @@ public class health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         slider.value = currentHealth;
 
-        UpdateHealthText();
         //Debug.Log($"{gameObject.name} health: {currentHealth}");
 
         if (currentHealth <= 0)
@@ -36,18 +33,6 @@ public class health : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} died!");
         //Destroy(gameObject);
-    }
-
-    void UpdateHealthText()
-    {
-        if (healthText != null)
-        {
-            healthText.text = $"Lives: {currentHealth}";
-        }
-        else
-        {
-            Debug.LogError("HealthText reference missing!");
-        }
     }
 
     public void setMaxHealth(int health)
