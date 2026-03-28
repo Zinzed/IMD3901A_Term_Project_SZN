@@ -845,7 +845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2905645202415424637, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2905645202415424637, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
       propertyPath: m_TagString
@@ -853,7 +853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4370886324183044969, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
       propertyPath: moveSpeed
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4370886324183044969, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
       propertyPath: wanderRadius
@@ -1482,6 +1482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalBoss: {fileID: 327016260}
   teleportRate: 5
+  vrWandBehaviour: {fileID: 538477108}
 --- !u!4 &289293148
 Transform:
   m_ObjectHideFlags: 0
@@ -3897,7 +3898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wandTip: {fileID: 1040277570}
-  swingThreshold: 0.05
+  swingThreshold: 0.8
   swingCooldown: 0.3
   swingActiveTime: 0.12
 --- !u!1001 &555859024
@@ -12773,11 +12774,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2905645202415424637, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2905645202415424637, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4370886324183044969, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
+      propertyPath: moveSpeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4370886324183044969, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
       propertyPath: wanderRadius
@@ -14232,8 +14237,8 @@ GameObject:
   - component: {fileID: 1348295978}
   - component: {fileID: 1348295982}
   - component: {fileID: 1348295981}
-  - component: {fileID: 1348295980}
   - component: {fileID: 1348295983}
+  - component: {fileID: 1348295984}
   m_Layer: 0
   m_Name: lightBulb
   m_TagString: Untagged
@@ -14256,27 +14261,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 538477102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1348295980
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348295977}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 17.204626
-  m_Center: {x: 1.9346797, y: 19.253218, z: 1.3824692}
 --- !u!23 &1348295981
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14343,6 +14327,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wandBehaviour: {fileID: 538477108}
+  wandSwing: {fileID: 538477109}
+  playerInteractionScript: {fileID: 1411060198}
+  colorMatchThreshold: 0.15
+  hitCooldown: 0.25
+--- !u!65 &1348295984
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348295977}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.695908, y: 116.097916, z: 1.1739902}
+  m_Center: {x: 0.25853357, y: 57.548958, z: -0.33319348}
 --- !u!114 &1371326594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14930,11 +14939,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2905645202415424637, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2905645202415424637, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4370886324183044969, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
+      propertyPath: moveSpeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4370886324183044969, guid: a1d0c6cc103898f4ca0ae18ca10cb1cf, type: 3}
       propertyPath: wanderRadius
@@ -20408,6 +20421,10 @@ PrefabInstance:
       propertyPath: m_TrackingStateInput.m_Reference
       value: 
       objectReference: {fileID: 320083164}
+    - target: {fileID: 4901628496248369314, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5603202940742387087, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
       propertyPath: m_SelectInput.m_InputActionReferenceValue
       value: 
@@ -24028,7 +24045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b98c2144faeb1d34eb1a3fdb3837df8d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.84099
+      value: -21.22
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b98c2144faeb1d34eb1a3fdb3837df8d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24264,6 +24281,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2306755826451712585, guid: 94a620b7e065d4e48b6c25e5aeb39692, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486268290089541625, guid: 94a620b7e065d4e48b6c25e5aeb39692, type: 3}
+      propertyPath: moveSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2486268290089541625, guid: 94a620b7e065d4e48b6c25e5aeb39692, type: 3}

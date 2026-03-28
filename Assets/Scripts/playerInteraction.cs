@@ -131,7 +131,7 @@ public class playerInteraction : MonoBehaviour
 
     }
 
-    void HandleBossHit(GameObject bossObj)
+    public void HandleBossHit(GameObject bossObj)
     {
         bossHits++;
         Debug.Log($"Boss Hit! {bossHits}/{requiredBossHits}");

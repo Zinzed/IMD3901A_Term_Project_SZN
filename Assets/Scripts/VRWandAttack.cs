@@ -2,19 +2,46 @@ using UnityEngine;
 
 public class VRWandAttack : MonoBehaviour
 {
-    public VRWandBehaviour wandBehaviour;
+    [Header("References")]
+    public VRWandBehaviour wandBehaviour;      // gets the current wand light color
+    public VRWandSwing wandSwing;              // checks if the player is actually swinging
+    public playerInteraction playerInteractionScript; // for boss hits + enemy count
+
+    [Header("Settings")]
+    public float colorMatchThreshold = 0.15f;  // allows small color differences
+    public float hitCooldown = 0.25f;          // stops multiple hits instantly
+
+    private float lastHitTime;
 
     private void OnTriggerEnter(Collider other)
     {
-        enemyBehaviour enemy = other.GetComponentInParent<enemyBehaviour>();
+        // stop spam hits
+        if (Time.time < lastHitTime + hitCooldown)
+            return;
 
+        // only hit enemies
+        if (!other.CompareTag("Enemy") && !other.CompareTag("FinalEnemy"))
+            return;
+
+        // enemy script
+        enemyBehaviour enemy = other.GetComponentInParent<enemyBehaviour>();
         if (enemy == null)
             return;
 
         Debug.Log("Enemy touched!");
 
+        // make sure the wand is actually swinging
+        if (wandSwing == null || !wandSwing.IsSwinging)
+        {
+            Debug.Log("Not swinging, so no hit.");
+            return;
+        }
+
         // get enemy color
         Renderer enemyRenderer = other.GetComponentInChildren<Renderer>();
+        if (enemyRenderer == null)
+            enemyRenderer = other.GetComponentInParent<Renderer>();
+
         if (enemyRenderer == null)
             return;
 
@@ -32,10 +59,33 @@ public class VRWandAttack : MonoBehaviour
             new Vector3(wandColor.r, wandColor.g, wandColor.b)
         );
 
-        if (colorDiff < 0.15f)
+        if (colorDiff < colorMatchThreshold)
         {
-            Destroy(enemy.gameObject);
-            Debug.Log("Correct color! Enemy destroyed.");
+            lastHitTime = Time.time;
+
+            // boss enemy
+            if (other.CompareTag("FinalEnemy"))
+            {
+                if (playerInteractionScript != null)
+                {
+                    playerInteractionScript.HandleBossHit(enemy.gameObject);
+                }
+                else
+                {
+                    Debug.LogWarning("playerInteractionScript not assigned, so boss hit was not handled.");
+                }
+            }
+            else
+            {
+                Destroy(enemy.gameObject);
+
+                if (playerInteractionScript != null)
+                {
+                    playerInteractionScript.enemiesKilled++;
+                }
+
+                Debug.Log("Correct color + swing! Enemy destroyed.");
+            }
         }
         else
         {

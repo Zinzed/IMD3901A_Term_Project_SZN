@@ -10,9 +10,9 @@ public class FinalBossBehaviour : MonoBehaviour
     private playerInteraction playerInteraction;
     private VRPlayerInteraction vrInteraction;
     private wandBehaviour wandBehaviour;
-    private VRWandBehaviour vrWandBehaviour;
+    public VRWandBehaviour vrWandBehaviour;
     private int totalEnemiesToKill;
-    private bool bossSpawned = false;
+    private bool bossSpawned = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,7 +25,7 @@ public class FinalBossBehaviour : MonoBehaviour
             playerInteraction = player.GetComponent<playerInteraction>();
             vrInteraction = player.GetComponent<VRPlayerInteraction>();
             wandBehaviour = player.GetComponentInChildren<wandBehaviour>();
-            vrWandBehaviour = player.GetComponentInChildren<VRWandBehaviour>();
+            //vrWandBehaviour = player.GetComponentInChildren<VRWandBehaviour>();
         }
 
 
@@ -56,7 +56,7 @@ public class FinalBossBehaviour : MonoBehaviour
                     playerInteraction = p.GetComponent<playerInteraction>();
                     vrInteraction = p.GetComponent<VRPlayerInteraction>();
                     wandBehaviour = p.GetComponentInChildren<wandBehaviour>();
-                    vrWandBehaviour = p.GetComponentInChildren<VRWandBehaviour>();
+                    //vrWandBehaviour = p.GetComponentInChildren<VRWandBehaviour>();
 
                     if (playerInteraction != null || vrInteraction != null)
                     {
