@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 public class health : MonoBehaviour
 {
     public int maxHealth = 5;
     int currentHealth;
+
+    public Slider slider;
 
     public TextMeshProUGUI healthText;
 
@@ -19,6 +21,8 @@ public class health : MonoBehaviour
     public void UpdateHealth(int amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        slider.value = currentHealth;
+
         UpdateHealthText();
         //Debug.Log($"{gameObject.name} health: {currentHealth}");
 
@@ -44,5 +48,10 @@ public class health : MonoBehaviour
         {
             Debug.LogError("HealthText reference missing!");
         }
+    }
+
+    public void setMaxHealth(int health)
+    {
+        slider.value = health;
     }
 }
