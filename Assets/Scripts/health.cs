@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class health : MonoBehaviour
 {
-    public int maxHealth = 100;
-    int currentHealth;
+    public int maxHealth = 5;
+    public int currentHealth;
 
     public Slider slider;
 
@@ -38,5 +38,11 @@ public class health : MonoBehaviour
     public void setMaxHealth(int health)
     {
         slider.value = health;
+    }
+
+    public void RestoreMaxHealth()
+    {
+        currentHealth = maxHealth;
+        slider.value = currentHealth;
     }
 }
