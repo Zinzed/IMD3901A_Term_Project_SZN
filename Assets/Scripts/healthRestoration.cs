@@ -17,21 +17,15 @@ public class healthRestoration : MonoBehaviour
             spin.Play();
 
             health status = other.GetComponent<health>();
-            if (status != null)
-            {
-                status.RestoreMaxHealth();
-            }
+            
         }
     }
-    //// Start is called once before the first execution of Update after the MonoBehaviour is created
-    //void Start()
-    //{
 
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
+    public void HealPlayer()
+    {
+        if (status != null)
+        {
+          status.RestoreMaxHealth();
+        }
+    }
 }

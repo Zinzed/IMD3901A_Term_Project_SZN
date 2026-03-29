@@ -926,6 +926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   slider: {fileID: 183362878}
 --- !u!136 &177661473
 CapsuleCollider:
@@ -1572,6 +1573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalBoss: {fileID: 327016260}
   teleportRate: 5
+  playerProgress: {fileID: 0}
   vrWandBehaviour: {fileID: 538477108}
 --- !u!4 &289293148
 Transform:
@@ -2806,6 +2808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correctOrder: 01000000020000000300000004000000050000000600000007000000
   line: {fileID: 385542304}
+  playerProgress: {fileID: 0}
 --- !u!120 &385542304
 LineRenderer:
   serializedVersion: 2
@@ -5991,6 +5994,63 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &789910107
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 546733042589558216, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_Name
+      value: healthRestorationCapsule
+      objectReference: {fileID: 0}
+    - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.556602
+      objectReference: {fileID: 0}
+    - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.38666153
+      objectReference: {fileID: 0}
+    - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9222218
+      objectReference: {fileID: 0}
+    - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 134.506
+      objectReference: {fileID: 0}
+    - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
 --- !u!1001 &803723963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14644,6 +14704,7 @@ MonoBehaviour:
   wandBehaviour: {fileID: 538477108}
   wandSwing: {fileID: 538477109}
   playerInteractionScript: {fileID: 1411060198}
+  playerProgress: {fileID: 0}
   colorMatchThreshold: 0.15
   hitCooldown: 0.25
 --- !u!65 &1348295984
@@ -15124,6 +15185,7 @@ MonoBehaviour:
   playerCamera: {fileID: 1672842972}
   uiBehaviourScript: {fileID: 1888291984}
   wandBehaviourScript: {fileID: 1111946687}
+  playerProgress: {fileID: 0}
   canInteract: 0
   enemiesKilled: 0
   requiredBossHits: 3
@@ -15165,6 +15227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   slider: {fileID: 183362878}
 --- !u!114 &1413604367
 MonoBehaviour:
@@ -24522,3 +24585,4 @@ SceneRoots:
   - {fileID: 1026612415}
   - {fileID: 971512784}
   - {fileID: 657969411}
+  - {fileID: 789910107}
