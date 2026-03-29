@@ -46,3 +46,5 @@ public class health : MonoBehaviour
         slider.value = currentHealth;
     }
 }
+
+ 
