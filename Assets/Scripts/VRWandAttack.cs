@@ -6,6 +6,7 @@ public class VRWandAttack : MonoBehaviour
     public VRWandBehaviour wandBehaviour;      // gets the current wand light color
     public VRWandSwing wandSwing;              // checks if the player is actually swinging
     public playerInteraction playerInteractionScript; // for boss hits + enemy count
+    public progressBar playerProgress;
 
     [Header("Settings")]
     public float colorMatchThreshold = 0.15f;  // allows small color differences
@@ -82,6 +83,15 @@ public class VRWandAttack : MonoBehaviour
                 if (playerInteractionScript != null)
                 {
                     playerInteractionScript.enemiesKilled++;
+
+                    if (playerProgress != null)
+                    {
+                        playerProgress.UpdateProgress(+1); // Increment progress
+                    }
+                    else
+                    {
+                        Debug.LogError("Player has no progress script!"); // Debug missing component
+                    }
                 }
 
                 Debug.Log("Correct color + swing! Enemy destroyed.");

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class ConstellationPuzzle : MonoBehaviour
 {
     //saves the correct order to connect the dots/stars
@@ -10,6 +12,8 @@ public class ConstellationPuzzle : MonoBehaviour
 
     //draws lines between stars as player connects them
     public LineRenderer line;
+
+    public progressBar playerProgress;
 
     //this function is called when a player interacts with a star
     public void AddStar(Vector3 pos, int id)
@@ -54,6 +58,15 @@ public class ConstellationPuzzle : MonoBehaviour
         }
 
         Debug.Log("yayyy");
+
+        if (playerProgress != null)
+        {
+            playerProgress.UpdateProgress(+10); // Increment progress
+        }
+        else
+        {
+            Debug.LogError("Player has no progress script!"); // Debug missing component
+        }
     }
     //clears puzzle for the player to try again
     void ResetPuzzle()

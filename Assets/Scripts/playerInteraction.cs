@@ -7,6 +7,7 @@ public class playerInteraction : MonoBehaviour
     public Camera playerCamera;
     public uiBehaviour uiBehaviourScript;
     public wandBehaviour wandBehaviourScript;
+    public progressBar playerProgress;
 
     public bool canInteract;
     public int enemiesKilled;
@@ -134,12 +135,22 @@ public class playerInteraction : MonoBehaviour
     public void HandleBossHit(GameObject bossObj)
     {
         bossHits++;
-        Debug.Log($"Boss Hit! {bossHits}/{requiredBossHits}");
+        //Debug.Log($"Boss Hit! {bossHits}/{requiredBossHits}");
 
         if (bossHits >= requiredBossHits)
         {
             Destroy(bossObj, 0.5f);
             Debug.Log("Final Boss Defeated!");
+            if (playerProgress != null)
+            {
+                playerProgress.UpdateProgress(+10); // Increment progress
+
+            }
+            else
+            {
+                Debug.LogError("Player has no progress script!"); // Debug missing component
+            }
+            
             //Trigger victory screen or next scene
         }
     }

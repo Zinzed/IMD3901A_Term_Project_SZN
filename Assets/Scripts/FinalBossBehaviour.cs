@@ -5,6 +5,7 @@ public class FinalBossBehaviour : MonoBehaviour
 {
     public GameObject finalBoss;
     public float teleportRate = 5f;
+    public progressBar playerProgress;
 
     private Transform playerTransform;
     private playerInteraction playerInteraction;
@@ -12,7 +13,7 @@ public class FinalBossBehaviour : MonoBehaviour
     private wandBehaviour wandBehaviour;
     public VRWandBehaviour vrWandBehaviour;
     private int totalEnemiesToKill;
-    private bool bossSpawned = true;
+    private bool bossSpawned = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -72,11 +73,20 @@ public class FinalBossBehaviour : MonoBehaviour
         else if (vrInteraction != null) currentKills = vrInteraction.enemiesKilled;
         else return; // Still haven't found a player script, so stop here
 
-        //Debug.Log("Current Kills: " + currentKills + " / Goal: " + totalEnemiesToKill);
+        Debug.Log("Current Kills: " + currentKills + " / Goal: " + totalEnemiesToKill);
 
         // check if the number of killed enemies matches the total found at the start
         if (currentKills >= totalEnemiesToKill && totalEnemiesToKill > 0)
         {
+            if (playerProgress != null)
+            {
+                playerProgress.UpdateProgress(+10); // Increment progress
+            }
+            else
+            {
+                Debug.LogError("Player has no progress script!"); // Debug missing component
+            }
+
             SpawnBoss();
         }
     }
