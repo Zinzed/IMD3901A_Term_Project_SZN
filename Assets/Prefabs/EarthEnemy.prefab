@@ -103,8 +103,12 @@ MonoBehaviour:
   moveSpeed: 2
   wanderRadius: 6
   chaseRadius: 5
+  stopDistance: 5
   minHeight: 0.5
   maxHeight: 1.5
+  hoverHeight: 1
+  separationRadius: 1.5
+  separationStrength: 1.5
   damageCooldown: 1
 --- !u!65 &2587605069248757941
 BoxCollider:
@@ -121,12 +125,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.996329, y: 3.8698206, z: 1.8813343}
-  m_Center: {x: 0.014296591, y: 1.8603039, z: 0.01047492}
+  m_Size: {x: 1.996329, y: 2.739974, z: 1.8813343}
+  m_Center: {x: 0.014296591, y: 2.4252272, z: 0.01047492}
 --- !u!54 &482710748285945424
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,9 +155,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 80
+  m_CollisionDetection: 1
 --- !u!4 &1998105990644382421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bf3e4c0e40f1ce04984335cfe7241e18, type: 3}
