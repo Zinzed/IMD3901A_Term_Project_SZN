@@ -5,7 +5,7 @@ public class enemyBehaviour : MonoBehaviour
 {
     public float moveSpeed = 2.0f;
     public float wanderRadius = 10.0f;
-    public float chaseRadius = 5.0f;
+    public float chaseRadius = 12.0f;
     public float stopDistance = 2.5f;
     public float minHeight = 0.5f;
     public float maxHeight = 1.5f;
@@ -26,11 +26,18 @@ public class enemyBehaviour : MonoBehaviour
 
     private Rigidbody rigidBody;
 
+    private Vector3 lastPosition;
+    private float stuckTimer = 0.0f;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         pickTarget();
         playerTransform = GameObject.FindWithTag("Player").transform;
+
+        Vector3 pos = transform.position;
+        pos.y = hoverHeight;
+        transform.position = pos;
     }
 
     private void FixedUpdate()
@@ -49,8 +56,9 @@ public class enemyBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    Vector3 side = Vector3.Cross(dirToPlayer, Vector3.up);
-                    target = transform.position + side * 2f;
+                    //Vector3 side = Vector3.Cross(dirToPlayer, Vector3.up);
+                    //target = transform.position + side * 2f;
+                    target = transform.position;
                 }
             }
             else
@@ -108,6 +116,27 @@ public class enemyBehaviour : MonoBehaviour
         Vector3 newPos = rigidBody.position + finalMove * moveSpeed * Time.fixedDeltaTime;
         newPos.y = hoverHeight;
         rigidBody.MovePosition(newPos);
+
+        //Makes sure enemies don't get stuck if something is in the way
+        //Pick a new target if stuck for too long
+        float movedDistance = Vector3.Distance(transform.position, lastPosition);
+
+        if (movedDistance < 0.01f)
+        {
+            stuckTimer += Time.fixedDeltaTime;
+
+            if (stuckTimer > 1.0f)
+            {
+                pickTarget();
+                stuckTimer = 0.0f;
+            }
+        }
+        else
+        {
+            stuckTimer = 0.0f;
+        }
+
+        lastPosition = transform.position;
 
         //StayOnGround();
     }
