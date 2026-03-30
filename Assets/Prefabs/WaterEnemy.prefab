@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bf3e4c0e40f1ce04984335cfe7241e18, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bf3e4c0e40f1ce04984335cfe7241e18, type: 3}
       propertyPath: m_LocalPosition.z
@@ -130,8 +130,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.1230874, y: 3.9207036, z: 1.8813343}
-  m_Center: {x: 0.027727604, y: 0.08617723, z: 0.01047492}
+  m_Size: {x: 3.2880363, y: 3.7350278, z: 1.8813343}
+  m_Center: {x: 0.039933383, y: 2.4823105, z: 0.01047492}
 --- !u!54 &499986042776348808
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72086d78c7fd35c429e5d2074e9bce4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.35
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72086d78c7fd35c429e5d2074e9bce4a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0e49796d557768e47a17a3ade8d463ac, type: 2}
+    - target: {fileID: 3571451337879168554, guid: 72086d78c7fd35c429e5d2074e9bce4a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
