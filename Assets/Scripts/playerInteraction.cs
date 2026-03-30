@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,15 @@ public class playerInteraction : MonoBehaviour
     private enemyBehaviour enemy;
     private int bossHits = 0;
     public int requiredBossHits = 3;
+
+    private Dictionary<string, Color> materialColorMap = new Dictionary<string, Color>()
+{
+    // enemy material names mapped to colours 
+    { "fireEnemy_mat", new Color(253/255f, 156/255f, 183/255f) }, // pink
+    { "earthEnemy_mat", new Color(143/255f, 240/255f, 112/255f) }, // green
+    { "waterEnemy_mat", new Color(128/255f, 215/255f, 244/255f) }, // blue
+    { "darkPurple_TEMP", new Color(38/255f, 29/255f, 91/255f) } // dark purple
+};
 
     //PUZZLE
     public ConstellationPuzzle puzzleScript;
@@ -52,7 +62,7 @@ public class playerInteraction : MonoBehaviour
                 if (enemyRenderer != null)
                 {
                     // Pass the detected enemy color to UI
-                    currentTargetColor = enemyRenderer.sharedMaterial.GetColor("_BaseColor");
+                    currentTargetColor = GetColorFromMaterialName(enemyRenderer);
                     uiBehaviourScript.SetCrosshairColor(currentTargetColor);
 
                     // Store enemy reference
@@ -160,5 +170,24 @@ public class playerInteraction : MonoBehaviour
             
             //Trigger victory screen or next scene
         }
+    }
+    private Color GetColorFromMaterialName(Renderer renderer)
+    {
+        if (renderer == null || renderer.sharedMaterial == null)
+            return Color.white;
+
+        string materialName = renderer.sharedMaterial.name;
+
+        // remove the " (Instance)" suffix if present
+        materialName = materialName.Replace(" (Instance)", "");
+
+        // check for exact match
+        if (materialColorMap.TryGetValue(materialName, out Color mappedColor))
+        {
+            return mappedColor;
+        }
+
+        Debug.LogWarning($"No color mapping found for material: {materialName}");
+        return Color.white;
     }
 }
