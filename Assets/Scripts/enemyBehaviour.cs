@@ -11,6 +11,8 @@ public class enemyBehaviour : MonoBehaviour
     public float maxHeight = 1.5f;
     public float hoverHeight = 1.0f;
 
+    public bool isChasing;
+
     public float separationRadius = 1.5f;
     public float separationStrength = 1.5f;
 
@@ -48,6 +50,8 @@ public class enemyBehaviour : MonoBehaviour
 
             if (distanceFromPlayer <= chaseRadius)
             {
+                isChasing = true;
+
                 Vector3 dirToPlayer = (transform.position - playerTransform.position).normalized;
 
                 if (distanceFromPlayer > stopDistance)
@@ -63,6 +67,8 @@ public class enemyBehaviour : MonoBehaviour
             }
             else
             {
+                isChasing = false;
+
                 if (Vector3.Distance(transform.position, target) < changeTarget)
                 {
                     pickTarget();
@@ -152,19 +158,19 @@ public class enemyBehaviour : MonoBehaviour
         );
     }
 
-    private void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.CompareTag("Player") && Time.time > lastDamageTime + damageCooldown)
-        {
-            health playerHealth = other.gameObject.GetComponent<health>();
+    //private void OnCollisionStay(Collision other)
+    //{
+    //    if (other.gameObject.CompareTag("Player") && Time.time > lastDamageTime + damageCooldown)
+    //    {
+    //        health playerHealth = other.gameObject.GetComponent<health>();
 
-            if (playerHealth != null )
-            {
-                playerHealth.UpdateHealth(-1);
-                lastDamageTime = Time.time;
-            }
-        }
-    }
+    //        if (playerHealth != null )
+    //        {
+    //            playerHealth.UpdateHealth(-1);
+    //            lastDamageTime = Time.time;
+    //        }
+    //    }
+    //}
 
     //void StayOnGround()
     //{
@@ -202,22 +208,22 @@ public class enemyBehaviour : MonoBehaviour
 
    
 
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log($"Triggered with: {other.gameObject.name}"); // Debug to confirm trigger
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log($"Triggered with: {other.gameObject.name}"); // Debug to confirm trigger
 
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Player triggered!"); // Confirm player detection
-            health playerHealth = other.GetComponent<health>();
-            if (playerHealth != null)
-            {
-                playerHealth.UpdateHealth(-1); // Deduct health
-            }
-            else
-            {
-                Debug.LogError("Player has no health script!"); // Debug missing component
-            }
-        }
-    }
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        Debug.Log("Player triggered!"); // Confirm player detection
+    //        health playerHealth = other.GetComponent<health>();
+    //        if (playerHealth != null)
+    //        {
+    //            playerHealth.UpdateHealth(-1); // Deduct health
+    //        }
+    //        else
+    //        {
+    //            Debug.LogError("Player has no health script!"); // Debug missing component
+    //        }
+    //    }
+    //}
 }

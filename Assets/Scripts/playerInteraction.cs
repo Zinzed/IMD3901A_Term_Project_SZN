@@ -20,9 +20,16 @@ public class playerInteraction : MonoBehaviour
     public ConstellationPuzzle puzzleScript;
     public TelescopeView teleView;
 
+    public int particleDamage = 1;
+    public float particleDamageCooldown = 0.5f;
+
+    private float lastParticleDamageTime;
+    private health playerHealth;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerHealth = GetComponent<health>();
         canInteract = false;
     }
 
@@ -152,6 +159,25 @@ public class playerInteraction : MonoBehaviour
             }
             
             //Trigger victory screen or next scene
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("Particle hit something: " + other.name);
+
+        if (other.CompareTag("Enemy") || other.CompareTag("FinalEnemy"))
+        {
+            if (Time.time >= lastParticleDamageTime + particleDamageCooldown)
+            {
+                if(playerHealth != null)
+                {
+                    playerHealth.UpdateHealth(-particleDamage);
+                    lastParticleDamageTime = Time.time;
+
+                    Debug.Log("attacked by enemy!");
+                }
+            }
         }
     }
 }
