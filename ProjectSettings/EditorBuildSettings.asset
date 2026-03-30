@@ -21,6 +21,8 @@ EditorBuildSettings:
     path: Assets/Scenes/IntroCutScene.unity
     guid: 9ccb87dd5f12e0147bee8af70d6c050a
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 987f9b652754b5d4dbf93d906b725d8f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 26427c38fc40f98479e29d3336718afa, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 920ddebd3d77d88428555dbf0ab6ed67, type: 2}
   m_UseUCBPForAssetBundles: 0
