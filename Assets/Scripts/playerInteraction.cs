@@ -161,23 +161,4 @@ public class playerInteraction : MonoBehaviour
             //Trigger victory screen or next scene
         }
     }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        Debug.Log("Particle hit something: " + other.name);
-
-        if (other.CompareTag("Enemy") || other.CompareTag("FinalEnemy"))
-        {
-            if (Time.time >= lastParticleDamageTime + particleDamageCooldown)
-            {
-                if(playerHealth != null)
-                {
-                    playerHealth.UpdateHealth(-particleDamage);
-                    lastParticleDamageTime = Time.time;
-
-                    Debug.Log("attacked by enemy!");
-                }
-            }
-        }
-    }
 }
