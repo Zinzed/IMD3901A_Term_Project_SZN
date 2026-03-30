@@ -17,6 +17,8 @@ public class enemyAttack : MonoBehaviour
     private Transform player;
     private health playerHealth;
 
+    [SerializeField] private AudioSource[] attackSounds;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
