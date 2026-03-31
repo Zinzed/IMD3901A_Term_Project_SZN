@@ -3,6 +3,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Numerics;
+using System.Net.NetworkInformation;
 
 public class MessagesManager : MonoBehaviour
 {
@@ -26,20 +28,54 @@ public class MessagesManager : MonoBehaviour
         startBttn.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            PreviousBubble();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            NextBubble();
+        }
+    }
+
     IEnumerator TypeText(TMP_Text textComponent)
 
     {
         string fullText = textComponent.text;
         textComponent.maxVisibleCharacters = 0;
 
-        while (textComponent.maxVisibleCharacters < fullText.Length)
+        // disable buttons while typing
+        nextBttn.interactable = false;
+        previousBttn.interactable = false;
+
+        for (int i = 0; i < fullText.Length; i++)
         {
             textComponent.maxVisibleCharacters++;
-            yield return new WaitForSeconds(m_DelayBetweenCharacters);
 
-            // disable next previous buttons while still typing 
-            nextBttn.interactable = false;
-            previousBttn.interactable = false;
+            // default speed
+            float delay = m_DelayBetweenCharacters;
+
+            // check appearing character
+            char c = fullText[i];
+
+            // extra delay for punctuation
+            if (c == '.' || c == '!' || c == '?')
+            {
+                delay *= 10f; // long pause for end of sentence
+            }
+            else if (c == ',' || c == ';' || c == ':')
+            {
+                delay *= 5f; // medium pause for commas
+            }
+
+            yield return new WaitForSeconds(delay);
+           
+            // re-enable next previous buttons while still typing
+             nextBttn.interactable = true;
+             previousBttn.interactable = true;
+
         }
 
         nextBttn.interactable = true;
@@ -67,9 +103,12 @@ public class MessagesManager : MonoBehaviour
 
     public void NextBubble()
     {
-        // cant go to next if we're still typing
+        // if typing, skip to end and stop. don't increment index yet.
         if (typingCoroutine != null)
+        {
+            SkipToEnd();
             return;
+        }
 
         if (currentBubbleIndex < messageBubbles.Count - 1)
         {
@@ -80,19 +119,18 @@ public class MessagesManager : MonoBehaviour
 
     public void PreviousBubble()
     {
-        // cant go to previous if we're still typing
+        // if typing, just show the full text of current bubble
         if (typingCoroutine != null)
+        {
+            SkipToEnd();
             return;
+        }
 
         if (currentBubbleIndex > 0)
         {
             currentBubbleIndex--;
             UpdateMessages();
         }
-
-        
-
-        
     }
 
     public void SkipToEnd()
@@ -100,12 +138,26 @@ public class MessagesManager : MonoBehaviour
         // immediately show full text of current message
         if (typingCoroutine != null && currentTextComponent != null)
         {
+
             StopCoroutine(typingCoroutine);
             typingCoroutine = null;
 
             // show all characters of the current text
             currentTextComponent.maxVisibleCharacters = currentTextComponent.text.Length;
+
+            // re-enable buttons since typing was interrupted
+            nextBttn.interactable = true;
+            previousBttn.interactable = true;
+
+            // if this is the last message, handle start button
+            if (currentBubbleIndex == messageBubbles.Count - 1)
+            {
+                startBttn.SetActive(true);
+                nextBttn.interactable = false;
+            }
         }
+
+
     }
 
     private void UpdateMessages()
@@ -127,7 +179,11 @@ public class MessagesManager : MonoBehaviour
             {
                 // show bubbles up to current index, hide future ones
                 messageBubbles[i].SetActive(i == currentBubbleIndex);
-                notificationSFX.Play();
+
+                if (i == currentBubbleIndex)
+                {
+                    notificationSFX.Play();
+                }
             }
         }
 

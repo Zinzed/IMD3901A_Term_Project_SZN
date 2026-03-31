@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 47048c0a82e5fe444821b45337de6b20
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainGame_VR.unity
     guid: 1e49b55cc3075ed4383e2bdaff1ca9ab
   - enabled: 1
@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IntroCutScene.unity
     guid: 9ccb87dd5f12e0147bee8af70d6c050a
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: 57d1089acbd66d244b0b726628180c94
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: dcebd3ed9b4cee7459c58361bed4554e
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 987f9b652754b5d4dbf93d906b725d8f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
