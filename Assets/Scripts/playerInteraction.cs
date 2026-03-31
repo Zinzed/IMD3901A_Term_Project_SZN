@@ -9,6 +9,7 @@ public class playerInteraction : MonoBehaviour
     public uiBehaviour uiBehaviourScript;
     public wandBehaviour wandBehaviourScript;
     public progressBar playerProgress;
+    public GameObject puzzleCover;
 
     public bool canInteract;
     public int enemiesKilled;
@@ -168,6 +169,14 @@ public class playerInteraction : MonoBehaviour
             isBossDead = true;
             Destroy(bossObj, 0.5f);
             Debug.Log("Final Boss Defeated!");
+
+            //reveal puzzle
+            if (puzzleCover != null)
+            {
+                Destroy(puzzleCover);
+                Debug.Log("Puzzle cover removed!");
+            }
+
             if (playerProgress != null)
             {
                 playerProgress.UpdateProgress(+10); // Increment progress
