@@ -182,7 +182,7 @@ public class playerInteraction : MonoBehaviour
             //Trigger victory screen or next scene
         }
     }
-    private Color GetColorFromMaterialName(Renderer renderer)
+    public Color GetColorFromMaterialName(Renderer renderer)
     {
         if (renderer == null || renderer.sharedMaterial == null)
             return Color.white;

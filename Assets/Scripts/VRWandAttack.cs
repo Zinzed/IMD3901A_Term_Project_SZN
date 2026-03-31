@@ -14,6 +14,7 @@ public class VRWandAttack : MonoBehaviour
 
     private float lastHitTime;
 
+
     private void OnTriggerEnter(Collider other)
     {
         // stop spam hits
@@ -46,7 +47,7 @@ public class VRWandAttack : MonoBehaviour
         if (enemyRenderer == null)
             return;
 
-        Color enemyColor = enemyRenderer.material.GetColor("_BaseColor");
+        Color enemyColor = playerInteractionScript.GetColorFromMaterialName(enemyRenderer);
 
         // get wand color
         Color wandColor = wandBehaviour.CurrentColor;

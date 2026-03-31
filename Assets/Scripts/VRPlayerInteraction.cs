@@ -72,7 +72,7 @@ public class VRPlayerInteraction : MonoBehaviour
         uiBehaviourScript.SetInteract(canInteract);
     }
 
-    private Color GetColorFromMaterialName(Renderer renderer)
+    public Color GetColorFromMaterialName(Renderer renderer)
     {
         if (renderer == null || renderer.sharedMaterial == null)
             return Color.white;
