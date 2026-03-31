@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class VRWandAttack : MonoBehaviour
 {
@@ -14,7 +15,17 @@ public class VRWandAttack : MonoBehaviour
     public float colorMatchThreshold = 0.15f;  // allows small color differences
     public float hitCooldown = 0.25f;          // stops multiple hits instantly
 
+    [Header("VFX")]
+    public GameObject hitEffect;
+
     private float lastHitTime;
+
+    //partcile effect for when enemy gets destroyed gets initialized
+    void Start()
+    {
+        if (hitEffect != null)
+            hitEffect.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -90,6 +101,22 @@ public class VRWandAttack : MonoBehaviour
             }
             else
             {
+                // spawn particle effect at enemy position
+                if (hitEffect != null)
+                {
+                    hitEffect.transform.position = enemy.transform.position;
+                    hitEffect.SetActive(true);
+
+                    ParticleSystem ps = hitEffect.GetComponent<ParticleSystem>();
+                    if (ps != null)
+                    {
+                        ps.Clear();
+                        ps.Play();
+                    }
+
+                    StartCoroutine(DisableEffectAfterDelay(2f));
+                }
+
                 Destroy(enemy.gameObject);
 
                 if (playerInteractionScript != null)
@@ -108,5 +135,14 @@ public class VRWandAttack : MonoBehaviour
         {
             Debug.Log("Wrong color!");
         }
+    }
+
+    //particle effect
+    IEnumerator DisableEffectAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (hitEffect != null)
+            hitEffect.SetActive(false);
     }
 }
