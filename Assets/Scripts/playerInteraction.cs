@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class playerInteraction : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class playerInteraction : MonoBehaviour
 
     public bool canInteract;
     public int enemiesKilled;
+
+    [Header("VFX")]
+    public GameObject hitEffect;
 
     private enemyBehaviour enemy;
     private int bossHits = 0;
@@ -43,6 +47,10 @@ public class playerInteraction : MonoBehaviour
     {
         playerHealth = GetComponent<health>();
         canInteract = false;
+
+        //particle effect for when player gets hit:
+        if (hitEffect != null)
+            hitEffect.SetActive(false);
     }
 
     // Update is called once per frame
@@ -144,6 +152,22 @@ public class playerInteraction : MonoBehaviour
                 }
                 else
                 {
+                    // spawn particle effect at enemy position
+                    if (hitEffect != null)
+                    {
+                        hitEffect.transform.position = enemy.transform.position;
+                        hitEffect.SetActive(true);
+
+                        ParticleSystem ps = hitEffect.GetComponent<ParticleSystem>();
+                        if (ps != null)
+                        {
+                            ps.Clear();
+                            ps.Play();
+                        }
+
+                        StartCoroutine(DisableEffectAfterDelay(2f));
+                    }
+
                     // Normal enemy logic
                     enemy.Kill();
                     enemiesKilled++;
@@ -208,5 +232,14 @@ public class playerInteraction : MonoBehaviour
 
         Debug.LogWarning($"No color mapping found for material: {materialName}");
         return Color.white;
+    }
+
+    //particle effect
+    IEnumerator DisableEffectAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (hitEffect != null)
+            hitEffect.SetActive(false);
     }
 }

@@ -18932,6 +18932,7 @@ MonoBehaviour:
   puzzleCover: {fileID: 452494096}
   canInteract: 0
   enemiesKilled: 0
+  hitEffect: {fileID: 639572371}
   requiredBossHits: 3
   puzzleScript: {fileID: 385542303}
   teleView: {fileID: 687329389}
