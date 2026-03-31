@@ -18063,7 +18063,7 @@ MonoBehaviour:
   wandBehaviour: {fileID: 538477108}
   wandSwing: {fileID: 538477109}
   playerInteractionScript: {fileID: 1411060198}
-  playerProgress: {fileID: 1238586485}
+  playerProgress: {fileID: 0}
   colorMatchThreshold: 0.15
   hitCooldown: 0.25
 --- !u!65 &1348295984
