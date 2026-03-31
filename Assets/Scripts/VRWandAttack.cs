@@ -86,7 +86,7 @@ public class VRWandAttack : MonoBehaviour
 
                     if (playerProgress != null)
                     {
-                        playerProgress.UpdateProgress(+1); // Increment progress
+                        playerProgress.UpdateProgress(+10); // Increment progress
                     }
                     else
                     {

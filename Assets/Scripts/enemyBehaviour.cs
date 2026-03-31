@@ -19,6 +19,8 @@ public class enemyBehaviour : MonoBehaviour
     public float damageCooldown = 1.0f;
     private float lastDamageTime;
 
+    public bool isDead = false;
+
     private Vector3 target;
     private float changeTarget = 1.5f;
     private Transform playerTransform;
@@ -30,6 +32,7 @@ public class enemyBehaviour : MonoBehaviour
 
     private Vector3 lastPosition;
     private float stuckTimer = 0.0f;
+
 
     void Start()
     {

@@ -16,6 +16,7 @@ public class playerInteraction : MonoBehaviour
     private enemyBehaviour enemy;
     private int bossHits = 0;
     public int requiredBossHits = 3;
+    private bool isBossDead = false;
 
     private Dictionary<string, Color> materialColorMap = new Dictionary<string, Color>()
 {
@@ -129,6 +130,10 @@ public class playerInteraction : MonoBehaviour
 
             if (colorDiff < 0.1f) // 0.1 allows for tiny variations
             {
+     
+
+                if (enemy.isDead) return;  // nothing happens if already dead
+
                 // Check if this enemy is actually the Boss
                 if (enemy.CompareTag("FinalEnemy"))
                 {
@@ -137,6 +142,7 @@ public class playerInteraction : MonoBehaviour
                 else
                 {
                     // Normal enemy logic
+                    enemy.isDead = true;
                     Destroy(enemy.gameObject, 1.2f);
                     enemiesKilled++;
                 }
@@ -151,11 +157,14 @@ public class playerInteraction : MonoBehaviour
 
     public void HandleBossHit(GameObject bossObj)
     {
+        if (isBossDead) return;
+
         bossHits++;
         //Debug.Log($"Boss Hit! {bossHits}/{requiredBossHits}");
 
         if (bossHits >= requiredBossHits)
         {
+            isBossDead = true;
             Destroy(bossObj, 0.5f);
             Debug.Log("Final Boss Defeated!");
             if (playerProgress != null)
