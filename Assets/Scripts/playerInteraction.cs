@@ -144,8 +144,7 @@ public class playerInteraction : MonoBehaviour
                 else
                 {
                     // Normal enemy logic
-                    enemy.isDead = true;
-                    Destroy(enemy.gameObject, 1.2f);
+                    enemy.Kill();
                     enemiesKilled++;
                 }
             }

@@ -4959,6 +4959,9 @@ MonoBehaviour:
   separationRadius: 1.5
   separationStrength: 1.5
   damageCooldown: 1
+  isDead: 0
+  animator: {fileID: 3099481276440683890}
+  destroyDelay: 2
 --- !u!65 &2587605069248757941
 BoxCollider:
   m_ObjectHideFlags: 0

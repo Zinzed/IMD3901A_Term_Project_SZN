@@ -1075,6 +1075,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   slider: {fileID: 183362878}
+  sceneLoader: {fileID: 0}
 --- !u!136 &177661473
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1735,6 +1736,10 @@ PrefabInstance:
     - target: {fileID: 927093235173867378, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412803596747179243, guid: 799b1a1a84ba92e4bba9513b94d00cd0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.95
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17001,6 +17006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a824c5a4c582c7408df22df987496c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneLoader: {fileID: 0}
   maxProgress: 30
   slider: {fileID: 1238586484}
 --- !u!1 &1248740565
@@ -18583,6 +18589,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   slider: {fileID: 183362878}
+  sceneLoader: {fileID: 0}
 --- !u!114 &1413604367
 MonoBehaviour:
   m_ObjectHideFlags: 0

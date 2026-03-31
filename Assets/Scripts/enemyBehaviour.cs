@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -20,6 +21,7 @@ public class enemyBehaviour : MonoBehaviour
     private float lastDamageTime;
 
     public bool isDead = false;
+    private bool isDying = false;
 
     private Vector3 target;
     private float changeTarget = 1.5f;
@@ -33,6 +35,8 @@ public class enemyBehaviour : MonoBehaviour
     private Vector3 lastPosition;
     private float stuckTimer = 0.0f;
 
+    [SerializeField] private Animator animator;
+    [SerializeField] private float destroyDelay = 2.0f;
 
     void Start()
     {
@@ -47,6 +51,11 @@ public class enemyBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         if (playerTransform != null)
         {
             float distanceFromPlayer = Vector3.Distance(transform.position, playerTransform.position);
@@ -161,72 +170,21 @@ public class enemyBehaviour : MonoBehaviour
         );
     }
 
-    //private void OnCollisionStay(Collision other)
-    //{
-    //    if (other.gameObject.CompareTag("Player") && Time.time > lastDamageTime + damageCooldown)
-    //    {
-    //        health playerHealth = other.gameObject.GetComponent<health>();
-
-    //        if (playerHealth != null )
-    //        {
-    //            playerHealth.UpdateHealth(-1);
-    //            lastDamageTime = Time.time;
-    //        }
-    //    }
-    //}
-
-    //void StayOnGround()
-    //{
-    //    RaycastHit hit;
-
-    //    if (Physics.Raycast(rigidBody.position + Vector3.up * 5f, Vector3.down, out hit, 20f))
-    //    {
-    //        Vector3 pos = rigidBody.position;
-    //        pos.y = hit.point.y + hoverHeight;
-    //        rigidBody.position = pos;
-    //    }
-    //}
-
-    void Update()
+    public void Kill()
     {
-        //if (playerTransform != null)
-        //{
-        //    float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        if (isDying)
+        {
+            return;
+        }
 
-        //    // Prioritize chasing if player is within range
-        //    if (distanceToPlayer <= chaseRadius)
-        //    {
-        //        target = playerTransform.position;
-        //    }
-        //    else if (Vector3.Distance(transform.position, target) < changeTarget)
-        //    {
-        //        // Pick new target only when not chasing
-        //        pickTarget();
-        //    }
-        //}
+        rigidBody.linearVelocity = Vector3.zero;
+        rigidBody.isKinematic = true;
 
-        //// Move towards the current target
-        //transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+        if (animator != null)
+        {
+            animator.SetTrigger("isKilled");
+        }
+
+        Destroy(gameObject, destroyDelay);
     }
-
-   
-
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log($"Triggered with: {other.gameObject.name}"); // Debug to confirm trigger
-
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        Debug.Log("Player triggered!"); // Confirm player detection
-    //        health playerHealth = other.GetComponent<health>();
-    //        if (playerHealth != null)
-    //        {
-    //            playerHealth.UpdateHealth(-1); // Deduct health
-    //        }
-    //        else
-    //        {
-    //            Debug.LogError("Player has no health script!"); // Debug missing component
-    //        }
-    //    }
-    //}
 }
