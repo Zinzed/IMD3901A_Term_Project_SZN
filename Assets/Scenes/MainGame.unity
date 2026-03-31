@@ -4597,11 +4597,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7da23594919f20541806e8d6db0ca43f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.53
+      value: 3.17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7da23594919f20541806e8d6db0ca43f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.38
+      value: -3.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7da23594919f20541806e8d6db0ca43f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18063,7 +18063,7 @@ MonoBehaviour:
   wandBehaviour: {fileID: 538477108}
   wandSwing: {fileID: 538477109}
   playerInteractionScript: {fileID: 1411060198}
-  playerProgress: {fileID: 0}
+  playerProgress: {fileID: 1238586485}
   colorMatchThreshold: 0.15
   hitCooldown: 0.25
 --- !u!65 &1348295984
@@ -24190,6 +24190,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1281144526327393618, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.31
+      objectReference: {fileID: 0}
     - target: {fileID: 1571629708225650744, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
       propertyPath: m_Radius
       value: 0.1
@@ -28700,8 +28704,8 @@ Transform:
   m_GameObject: {fileID: 2072679940}
   serializedVersion: 2
   m_LocalRotation: {x: 0.029226905, y: -0.3830783, z: 0.0033897962, w: 0.9232472}
-  m_LocalPosition: {x: 15.1465, y: -6.7686, z: -9.0287}
-  m_LocalScale: {x: 2.9269, y: 5.147674, z: 7.207292}
+  m_LocalPosition: {x: 15.2086, y: -7.9495, z: -9.1177}
+  m_LocalScale: {x: 2.9269, y: 2.7773647, z: 7.2866626}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1890431609}
