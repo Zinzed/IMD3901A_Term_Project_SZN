@@ -122,6 +122,7 @@ public class playerInteraction : MonoBehaviour
 
         if (enemy != null && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
+            if (enemy.gameObject == null) return;
             // Get the wand light color from your wand script
             Color wandColor = wandBehaviourScript.CurrentColor;
 
@@ -132,12 +133,13 @@ public class playerInteraction : MonoBehaviour
             {
      
 
-                if (enemy.isDead) return;  // nothing happens if already dead
+                if (enemy == null || enemy.isDead) return;  // nothing happens if already dead
+
 
                 // Check if this enemy is actually the Boss
                 if (enemy.CompareTag("FinalEnemy"))
                 {
-                    HandleBossHit(enemy.gameObject);
+                    if (!isBossDead) HandleBossHit(enemy.gameObject);
                 }
                 else
                 {

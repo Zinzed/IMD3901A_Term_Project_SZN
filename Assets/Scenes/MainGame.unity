@@ -1075,6 +1075,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   slider: {fileID: 183362878}
+  sceneLoader: {fileID: 221485573}
 --- !u!136 &177661473
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1550,6 +1551,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214794602}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &221485572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 221485574}
+  - component: {fileID: 221485573}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &221485573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221485572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e672d63cfbc3fe64299dcd65f7b81d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: 
+  primaryBttnSFX: {fileID: 0}
+--- !u!4 &221485574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221485572}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.83501, y: 6.37449, z: -13.42109}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &225300568
 GameObject:
   m_ObjectHideFlags: 0
@@ -17100,6 +17147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a824c5a4c582c7408df22df987496c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneLoader: {fileID: 221485573}
   maxProgress: 30
   slider: {fileID: 1238586484}
 --- !u!1 &1248740565
@@ -18682,6 +18730,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   slider: {fileID: 183362878}
+  sceneLoader: {fileID: 221485573}
 --- !u!114 &1413604367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29469,3 +29518,4 @@ SceneRoots:
   - {fileID: 2113281625}
   - {fileID: 373674667}
   - {fileID: 657969411}
+  - {fileID: 221485574}
