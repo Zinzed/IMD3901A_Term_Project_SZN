@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class FinalBossBehaviour : MonoBehaviour
@@ -12,7 +11,6 @@ public class FinalBossBehaviour : MonoBehaviour
     private VRPlayerInteraction vrInteraction;
     private wandBehaviour wandBehaviour;
     public VRWandBehaviour vrWandBehaviour;
-    private int totalEnemiesToKill;
     private bool bossSpawned = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,19 +27,12 @@ public class FinalBossBehaviour : MonoBehaviour
             //vrWandBehaviour = player.GetComponentInChildren<VRWandBehaviour>();
         }
 
-
-        // get the goal
-        totalEnemiesToKill = GameObject.FindGameObjectsWithTag("Enemy").Length;
-
         if (finalBoss != null)
             finalBoss.SetActive(false);
-
-        Debug.Log("Total enemies to kill: " + totalEnemiesToKill);
     }
 
     void Update()
     {
-
         if (bossSpawned) return;
 
         if (playerInteraction == null && vrInteraction == null)
@@ -66,17 +57,14 @@ public class FinalBossBehaviour : MonoBehaviour
                     }
                 }
             }
-            return;
         }
-        int currentKills = 0;
-        if (playerInteraction != null) currentKills = playerInteraction.enemiesKilled;
-        //else if (vrInteraction != null) currentKills = vrInteraction.enemiesKilled;
-        else return; // Still haven't found a player script, so stop here
 
-        Debug.Log("Current Kills: " + currentKills + " / Goal: " + totalEnemiesToKill);
+        // check how many normal enemies are still left
+        GameObject[] remainingEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Debug.Log("Enemies left: " + remainingEnemies.Length);
 
         // check if the number of killed enemies matches the total found at the start
-        if (currentKills >= totalEnemiesToKill && totalEnemiesToKill > 0)
+        if (remainingEnemies.Length == 0)
         {
             if (playerProgress != null)
             {
@@ -94,7 +82,10 @@ public class FinalBossBehaviour : MonoBehaviour
     void SpawnBoss()
     {
         bossSpawned = true;
-        finalBoss.SetActive(true);
+
+        if (finalBoss != null)
+            finalBoss.SetActive(true);
+
         Debug.Log("All enemies killed. Final boss spawned!");
 
         CombinePowers();
@@ -102,7 +93,6 @@ public class FinalBossBehaviour : MonoBehaviour
 
         // start teleporting after 2 seconds, then every 'teleportRate' seconds
         InvokeRepeating(nameof(Teleport), 2f, teleportRate);
-
     }
 
     void CombinePowers()
@@ -110,27 +100,34 @@ public class FinalBossBehaviour : MonoBehaviour
         Color darkPurple;
         ColorUtility.TryParseHtmlString("#261D5B", out darkPurple); // converts hexcode to colour
 
-        if (wandBehaviour != null) {
-
+        if (wandBehaviour != null)
+        {
             // "combine"/clear all colours/powers for a new one to defeat final boss 
             wandBehaviour.SetColour(darkPurple);
             wandBehaviour.colours.Clear();
             wandBehaviour.colours.Add(darkPurple);
+            Debug.Log("Desktop wand changed to purple.");
         }
 
-        else if (vrWandBehaviour != null)
+        if (vrWandBehaviour != null)
         {
             vrWandBehaviour.SetColour(darkPurple);
             vrWandBehaviour.colours.Clear();
             vrWandBehaviour.colours.Add(darkPurple);
+            Debug.Log("VR wand changed to purple.");
+        }
+        else
+        {
+            Debug.LogWarning("vrWandBehaviour is not assigned.");
         }
     }
 
     void Teleport()
     {
+        if (finalBoss == null || playerTransform == null)
+            return;
+
         Vector3 randomOffset = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         finalBoss.transform.position = playerTransform.position + randomOffset;
-
     }
-
 }

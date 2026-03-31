@@ -5,6 +5,8 @@ public class VRWandAttack : MonoBehaviour
     [Header("References")]
     public VRWandBehaviour wandBehaviour;      // gets the current wand light color
     public VRWandSwing wandSwing;              // checks if the player is actually swinging
+
+    public VRPlayerInteraction vrPlayerInteractionScript;
     public playerInteraction playerInteractionScript; // for boss hits + enemy count
     public progressBar playerProgress;
 
@@ -13,7 +15,6 @@ public class VRWandAttack : MonoBehaviour
     public float hitCooldown = 0.25f;          // stops multiple hits instantly
 
     private float lastHitTime;
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -47,7 +48,17 @@ public class VRWandAttack : MonoBehaviour
         if (enemyRenderer == null)
             return;
 
-        Color enemyColor = playerInteractionScript.GetColorFromMaterialName(enemyRenderer);
+        Color enemyColor;
+
+        if (vrPlayerInteractionScript != null)
+            enemyColor = vrPlayerInteractionScript.GetColorFromMaterialName(enemyRenderer);
+        else if (playerInteractionScript != null)
+            enemyColor = playerInteractionScript.GetColorFromMaterialName(enemyRenderer);
+        else
+        {
+            Debug.LogWarning("No interaction script assigned, so enemy color could not be checked.");
+            return;
+        }
 
         // get wand color
         Color wandColor = wandBehaviour.CurrentColor;
@@ -82,18 +93,13 @@ public class VRWandAttack : MonoBehaviour
                 Destroy(enemy.gameObject);
 
                 if (playerInteractionScript != null)
-                {
                     playerInteractionScript.enemiesKilled++;
 
-                    if (playerProgress != null)
-                    {
-                        playerProgress.UpdateProgress(+10); // Increment progress
-                    }
-                    else
-                    {
-                        Debug.LogError("Player has no progress script!"); // Debug missing component
-                    }
-                }
+                if (vrPlayerInteractionScript != null)
+                    vrPlayerInteractionScript.enemiesKilled++;
+
+                if (playerProgress != null)
+                    playerProgress.UpdateProgress(+10);
 
                 Debug.Log("Correct color + swing! Enemy destroyed.");
             }
