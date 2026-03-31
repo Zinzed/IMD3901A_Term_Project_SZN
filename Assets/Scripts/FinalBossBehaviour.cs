@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FinalBossBehaviour : MonoBehaviour
@@ -12,6 +13,11 @@ public class FinalBossBehaviour : MonoBehaviour
     private wandBehaviour wandBehaviour;
     public VRWandBehaviour vrWandBehaviour;
     private bool bossSpawned = false;
+
+    [SerializeField] private AudioClip bossIntro;
+    [SerializeField] private float spawnDelay = 21.5f;
+    [SerializeField] private float firstTeleportDelay = 2.0f;
+    [SerializeField] private float teleportCooldown = 10.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -82,17 +88,18 @@ public class FinalBossBehaviour : MonoBehaviour
     void SpawnBoss()
     {
         bossSpawned = true;
+        StartCoroutine(SpawnSequence());
 
-        if (finalBoss != null)
-            finalBoss.SetActive(true);
+        //if (finalBoss != null)
+        //    finalBoss.SetActive(true);
 
-        Debug.Log("All enemies killed. Final boss spawned!");
+        //Debug.Log("All enemies killed. Final boss spawned!");
 
-        CombinePowers();
-        Teleport();
+        //CombinePowers();
+        //Teleport();
 
-        // start teleporting after 2 seconds, then every 'teleportRate' seconds
-        InvokeRepeating(nameof(Teleport), 2f, teleportRate);
+        //// start teleporting after 2 seconds, then every 'teleportRate' seconds
+        //InvokeRepeating(nameof(Teleport), 2f, teleportRate);
     }
 
     void CombinePowers()
@@ -119,6 +126,34 @@ public class FinalBossBehaviour : MonoBehaviour
         else
         {
             Debug.LogWarning("vrWandBehaviour is not assigned.");
+        }
+    }
+
+    IEnumerator SpawnSequence()
+    {
+        Debug.Log("Playing boss intro..");
+
+        if (bossIntro != null && playerTransform != null)
+        {
+            AudioSource.PlayClipAtPoint(bossIntro, playerTransform.position);
+        }
+
+        yield return new WaitForSeconds(spawnDelay);
+
+        finalBoss.SetActive(true);
+        Debug.Log("All enemies killed. Final boss spawned!");
+
+        CombinePowers();
+
+        StartCoroutine(TeleportLoop());
+    }
+
+    IEnumerator TeleportLoop()
+    {
+        while (true)
+        {
+            Teleport();
+            yield return new WaitForSeconds(teleportCooldown);
         }
     }
 
