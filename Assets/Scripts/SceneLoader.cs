@@ -13,7 +13,12 @@ public class SceneLoader : MonoBehaviour
     public void next(string scene)
     {
         SceneManager.LoadSceneAsync(scene);
-        primaryBttnSFX.Play();
+
+        if (primaryBttnSFX != null)
+        {
+            primaryBttnSFX.Play();
+        }
+
     }
 
 

@@ -4,6 +4,7 @@ using System.Collections;
 
 public class progressBar : MonoBehaviour
 {
+    public SceneLoader sceneLoader;
 
     public int maxProgress = 30;
 
@@ -44,6 +45,7 @@ public class progressBar : MonoBehaviour
 
     void Win()
     {
+        sceneLoader.next("WinScene");
         Debug.Log($"you won!");
     }
 

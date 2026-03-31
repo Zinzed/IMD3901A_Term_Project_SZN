@@ -9,6 +9,8 @@ public class health : MonoBehaviour
 
     public Slider slider;
 
+    public SceneLoader sceneLoader;
+
 
     void Start()
     {
@@ -32,6 +34,7 @@ public class health : MonoBehaviour
     void Death()
     {
         Debug.Log($"{gameObject.name} died!");
+        sceneLoader.next("LoseScene");
         //Destroy(gameObject);
     }
 
