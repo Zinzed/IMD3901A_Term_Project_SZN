@@ -2334,7 +2334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2021303017
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2528,8 +2528,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "2. Cast Power: Swing the Magic Wand by pressing E to cast the selected
     power. Choose the correct power to defeat the enemies\r\r\r\n\r\n3. Solve the
-    final puzzle to gather clues on Luna\u2019s whereabouts\r\n\r\n4. Set princess
-    Luna free!"
+    final puzzle to gather clues on Luna\u2019s whereabouts. Left-click to interact
+    with puzzle elements\r\n\r\n4. Set princess Luna free!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
   m_sharedMaterial: {fileID: 7627370505618386333, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
