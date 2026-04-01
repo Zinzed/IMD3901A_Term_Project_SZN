@@ -320,6 +320,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 701899841712632613, guid: c1ff3c4a39151cf43bc8eed91ef0ecff, type: 3}
+--- !u!82 &31264517 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3608000937249634846, guid: 437422516ead96349a0987f0446543ec, type: 3}
+  m_PrefabInstance: {fileID: 387248934123282132}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &46070805
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,6 +2107,16 @@ MonoBehaviour:
   teleportRate: 5
   playerProgress: {fileID: 1238586485}
   vrWandBehaviour: {fileID: 538477108}
+  bossIntro: {fileID: 8300000, guid: 93c6bd564630f8240aaf9e6b7ab7e84d, type: 3}
+  spawnDelay: 21.5
+  firstTeleportDelay: 2
+  teleportCooldown: 10
+  bossSounds:
+  - {fileID: 8300000, guid: 9fe8791ff99c76e42adbbea0e74faa13, type: 3}
+  - {fileID: 8300000, guid: feabe4604062c1548bfcb9007cabe9ff, type: 3}
+  - {fileID: 8300000, guid: 4930a5ad15f21544cbfcbdff8332da33, type: 3}
+  - {fileID: 8300000, guid: c03ddb5f495baf74f864066103d30a2f, type: 3}
+  bossAudioSource: {fileID: 31264517}
 --- !u!4 &289293148
 Transform:
   m_ObjectHideFlags: 0
@@ -17920,10 +17935,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wandBehaviour: {fileID: 538477108}
   wandSwing: {fileID: 538477109}
+  vrPlayerInteractionScript: {fileID: 0}
   playerInteractionScript: {fileID: 1411060198}
   playerProgress: {fileID: 0}
   colorMatchThreshold: 0.15
   hitCooldown: 0.25
+  hitEffect: {fileID: 0}
 --- !u!65 &1348295984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18544,8 +18561,10 @@ MonoBehaviour:
   uiBehaviourScript: {fileID: 1888291984}
   wandBehaviourScript: {fileID: 1111946687}
   playerProgress: {fileID: 1238586485}
+  puzzleCover: {fileID: 0}
   canInteract: 0
   enemiesKilled: 0
+  hitEffect: {fileID: 0}
   requiredBossHits: 3
   puzzleScript: {fileID: 385542303}
   teleView: {fileID: 687329389}
@@ -25565,6 +25584,7 @@ GameObject:
   - component: {fileID: 1672842969}
   - component: {fileID: 1672842972}
   - component: {fileID: 1672842970}
+  - component: {fileID: 1672842973}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -25682,6 +25702,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &1672842973
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672842968}
+  m_Enabled: 1
 --- !u!1 &1688745030
 GameObject:
   m_ObjectHideFlags: 0

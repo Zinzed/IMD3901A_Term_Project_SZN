@@ -19,6 +19,9 @@ public class FinalBossBehaviour : MonoBehaviour
     [SerializeField] private float firstTeleportDelay = 2.0f;
     [SerializeField] private float teleportCooldown = 10.0f;
 
+    [SerializeField] private AudioClip[] bossSounds;
+    [SerializeField] private AudioSource bossAudioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -145,6 +148,10 @@ public class FinalBossBehaviour : MonoBehaviour
 
         CombinePowers();
 
+        yield return null;
+
+        StartCoroutine(BossSoundLoop());
+
         StartCoroutine(TeleportLoop());
     }
 
@@ -164,5 +171,43 @@ public class FinalBossBehaviour : MonoBehaviour
 
         Vector3 randomOffset = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         finalBoss.transform.position = playerTransform.position + randomOffset;
+    }
+
+    IEnumerator BossSoundLoop()
+    {
+        if (bossAudioSource == null || bossSounds.Length == 0)
+        {
+            yield break;
+        }
+
+        int lastIndex = -1;
+
+        while (true)
+        {
+            if (finalBoss == null)
+            {
+                yield break;
+            }
+            
+            //make sure the same sound doesn't play twice in a row
+            int newIndex = Random.Range(0, bossSounds.Length);
+
+            if (newIndex == lastIndex)
+            {
+                newIndex = (newIndex + 1) % bossSounds.Length;
+            }
+            lastIndex = newIndex;
+
+            AudioClip clip = bossSounds[newIndex];
+
+            bossAudioSource.pitch = Random.Range(0.9f, 1.1f);
+            bossAudioSource.volume = Random.Range(0.85f, 1f);
+
+            Debug.Log("Playing: " + clip.name);
+            bossAudioSource.PlayOneShot(clip);
+
+            yield return new WaitForSeconds(clip.length);
+            yield return new WaitForSeconds(Random.Range(0.3f, 1.2f));
+        }
     }
 }
