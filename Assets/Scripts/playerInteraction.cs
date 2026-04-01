@@ -20,7 +20,7 @@ public class playerInteraction : MonoBehaviour
 
     private enemyBehaviour enemy;
     private int bossHits = 0;
-    public int requiredBossHits = 3;
+    public int requiredBossHits = 10;
     private bool isBossDead = false;
 
     private Dictionary<string, Color> materialColorMap = new Dictionary<string, Color>()
