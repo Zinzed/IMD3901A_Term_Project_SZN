@@ -4,9 +4,9 @@ using System.Collections;
 
 public class FadeTeleporter : MonoBehaviour
 {
-    [SerializeField] public Transform destination;      // Drag your Teleportation Anchor here
-    public CanvasGroup faderGroup;    // Drag your Image's Canvas Group here
-    public InputActionReference activateAction; // XRI LeftHand/Interaction/Activate
+    [SerializeField] public Transform destination;      
+    public CanvasGroup faderGroup;   
+    public InputActionReference activateAction; 
     public float fadeDuration = 0.5f;
 
     private bool isPlayerInside = false;
@@ -32,13 +32,13 @@ public class FadeTeleporter : MonoBehaviour
 
     IEnumerator DoFadeTeleport()
     {
-        // 1. Fade to Black
+        //fade to black, set alpha to 1
         yield return StartCoroutine(Fade(1));
 
-        // 2. Teleport
+        //teleport the player to the destinations position
         GameObject.FindWithTag("Player").transform.position = destination.position;
 
-        // 3. Fade back to Clear
+        //fade back to clear
         yield return StartCoroutine(Fade(0));
     }
 

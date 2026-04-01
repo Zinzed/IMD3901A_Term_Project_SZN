@@ -92,8 +92,14 @@ public class playerInteraction : MonoBehaviour
                     StarNum star = hit.collider.GetComponent<StarNum>();
                     if (star != null)
                     {
+                        Renderer starRenderer = hit.collider.GetComponent<Renderer>();
+
+                        if (starRenderer == null)
+                        {
+                            starRenderer = hit.collider.GetComponentInChildren<Renderer>();
+                        }
                         // Pass the star's world position and ID to your puzzle logic
-                        puzzleScript.AddStar(star.transform.position, star.starID);
+                        puzzleScript.AddStar(transform.position, star.starID, starRenderer); 
                     }
                 }
             }
