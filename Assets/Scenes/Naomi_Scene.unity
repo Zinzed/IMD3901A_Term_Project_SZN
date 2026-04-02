@@ -3459,6 +3459,7 @@ MonoBehaviour:
   correctOrder: 01000000020000000300000004000000050000000600000007000000
   line: {fileID: 385542304}
   playerProgress: {fileID: 1238586485}
+  yellowLightStars: {fileID: 0}
 --- !u!120 &385542304
 LineRenderer:
   serializedVersion: 2
@@ -4004,7 +4005,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5326029344467299080, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
       propertyPath: moveSpeed
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6298853663714301395, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
       propertyPath: m_Name
@@ -5428,7 +5429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701317564284357812, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
       propertyPath: moveSpeed
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28345,7 +28346,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2364812267553177280, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
       propertyPath: moveSpeed
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2631670855795987280, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
       propertyPath: m_LocalPosition.x
