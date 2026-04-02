@@ -99,7 +99,7 @@ public class playerInteraction : MonoBehaviour
                             starRenderer = hit.collider.GetComponentInChildren<Renderer>();
                         }
                         // Pass the star's world position and ID to your puzzle logic
-                        puzzleScript.AddStar(transform.position, star.starID, starRenderer); 
+                        puzzleScript.AddStar(hit.collider.transform.position, star.starID, starRenderer); 
                     }
                 }
             }
