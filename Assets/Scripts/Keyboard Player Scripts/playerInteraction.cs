@@ -197,7 +197,15 @@ public class playerInteraction : MonoBehaviour
         if (bossHits >= requiredBossHits)
         {
             isBossDead = true;
-            Destroy(bossObj, 0.5f);
+            FinalBossActions bossActions = bossObj.GetComponent<FinalBossActions>();
+            if (bossActions != null)
+            {
+                bossActions.Die();
+            }
+            else
+            {
+                Destroy(bossObj );
+            }
             Debug.Log("Final Boss Defeated!");
 
             //reveal puzzle

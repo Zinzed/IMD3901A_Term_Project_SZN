@@ -22,6 +22,8 @@ public class FinalBossBehaviour : MonoBehaviour
     [SerializeField] private AudioClip[] bossSounds;
     [SerializeField] private AudioSource bossAudioSource;
 
+    private FinalBossActions bossActions;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -92,17 +94,6 @@ public class FinalBossBehaviour : MonoBehaviour
     {
         bossSpawned = true;
         StartCoroutine(SpawnSequence());
-
-        //if (finalBoss != null)
-        //    finalBoss.SetActive(true);
-
-        //Debug.Log("All enemies killed. Final boss spawned!");
-
-        //CombinePowers();
-        //Teleport();
-
-        //// start teleporting after 2 seconds, then every 'teleportRate' seconds
-        //InvokeRepeating(nameof(Teleport), 2f, teleportRate);
     }
 
     void CombinePowers()
@@ -144,6 +135,7 @@ public class FinalBossBehaviour : MonoBehaviour
         yield return new WaitForSeconds(spawnDelay);
 
         finalBoss.SetActive(true);
+        bossActions = finalBoss.GetComponent<FinalBossActions>();
         Debug.Log("All enemies killed. Final boss spawned!");
 
         CombinePowers();
@@ -171,6 +163,11 @@ public class FinalBossBehaviour : MonoBehaviour
 
         Vector3 randomOffset = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         finalBoss.transform.position = playerTransform.position + randomOffset;
+
+        if (bossActions != null)
+        {
+            bossActions.OnTeleport();
+        }
     }
 
     IEnumerator BossSoundLoop()
