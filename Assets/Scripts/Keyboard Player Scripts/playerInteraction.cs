@@ -99,7 +99,7 @@ public class playerInteraction : MonoBehaviour
                             starRenderer = hit.collider.GetComponentInChildren<Renderer>();
                         }
                         // Pass the star's world position and ID to your puzzle logic
-                        puzzleScript.AddStar(transform.position, star.starID, starRenderer); 
+                        puzzleScript.AddStar(hit.collider.transform.position, star.starID, starRenderer); 
                     }
                 }
             }
@@ -197,7 +197,15 @@ public class playerInteraction : MonoBehaviour
         if (bossHits >= requiredBossHits)
         {
             isBossDead = true;
-            Destroy(bossObj, 0.5f);
+            FinalBossActions bossActions = bossObj.GetComponent<FinalBossActions>();
+            if (bossActions != null)
+            {
+                bossActions.Die();
+            }
+            else
+            {
+                Destroy(bossObj );
+            }
             Debug.Log("Final Boss Defeated!");
 
             //reveal puzzle

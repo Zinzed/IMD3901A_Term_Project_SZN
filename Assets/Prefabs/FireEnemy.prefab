@@ -4961,7 +4961,7 @@ MonoBehaviour:
   damageCooldown: 1
   isDead: 0
   animator: {fileID: 8598919522614722900}
-  destroyDelay: 2
+  destroyDelay: 1
 --- !u!65 &7460779118338449431
 BoxCollider:
   m_ObjectHideFlags: 0

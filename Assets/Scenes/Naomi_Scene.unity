@@ -2116,6 +2116,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: feabe4604062c1548bfcb9007cabe9ff, type: 3}
   - {fileID: 8300000, guid: 4930a5ad15f21544cbfcbdff8332da33, type: 3}
   - {fileID: 8300000, guid: c03ddb5f495baf74f864066103d30a2f, type: 3}
+  - {fileID: 8300000, guid: 212d62c320a4e8343b9a1d18527ae065, type: 3}
+  - {fileID: 8300000, guid: 23a5b9395dcd1b1468644b073b77f166, type: 3}
   bossAudioSource: {fileID: 31264517}
 --- !u!4 &289293148
 Transform:
@@ -3459,6 +3461,7 @@ MonoBehaviour:
   correctOrder: 01000000020000000300000004000000050000000600000007000000
   line: {fileID: 385542304}
   playerProgress: {fileID: 1238586485}
+  yellowLightStars: {fileID: 0}
 --- !u!120 &385542304
 LineRenderer:
   serializedVersion: 2
@@ -4004,11 +4007,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5326029344467299080, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
       propertyPath: moveSpeed
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6298853663714301395, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
       propertyPath: m_Name
       value: FireEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298853663714301395, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6638823327050469225, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5428,7 +5435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701317564284357812, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
       propertyPath: moveSpeed
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14996,7 +15003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 103.90808, y: -103.96805}
+  m_AnchoredPosition: {x: 103.9082, y: -103.96805}
   m_SizeDelta: {x: 207.21606, y: 207.216}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1067461583
@@ -28345,7 +28352,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2364812267553177280, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
       propertyPath: moveSpeed
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2631670855795987280, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28390,6 +28397,10 @@ PrefabInstance:
     - target: {fileID: 3444763468711299562, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
       propertyPath: m_Name
       value: WaterEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444763468711299562, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
