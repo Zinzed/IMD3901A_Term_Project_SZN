@@ -24,10 +24,22 @@ public class FinalBossActions : MonoBehaviour
     [SerializeField] private float safeTimeBeforeTeleport = 2.0f;
     private float lastTeleportTime;
 
+    [SerializeField] public int damageAmount = 10;
+    private Transform player;
+    private health playerHealth;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SetNextAttack();
+
+        GameObject playerObj = GameObject.FindWithTag("Player");
+
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+            playerHealth = playerObj.GetComponent<health>();
+        }
     }
 
     public void OnTeleport()
@@ -86,6 +98,7 @@ public class FinalBossActions : MonoBehaviour
             animator.ResetTrigger("isAttacking");
             animator.SetTrigger("isAttacking");
             StartCoroutine(AttackFxRoutine());
+            playerHealth.UpdateHealth(-damageAmount);
 
             yield return new WaitForSeconds(attackDuration + timeBetweenAttacks);
         }
