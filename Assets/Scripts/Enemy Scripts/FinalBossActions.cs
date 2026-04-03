@@ -27,6 +27,10 @@ public class FinalBossActions : MonoBehaviour
     [SerializeField] public int damageAmount = 10;
     private Transform player;
     private health playerHealth;
+    //[SerializeField] private AudioClip attackSound;
+
+    [SerializeField] private float attackRange = 3.0f;
+    [SerializeField] private float damageDelay = 0.3f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -98,12 +102,32 @@ public class FinalBossActions : MonoBehaviour
             animator.ResetTrigger("isAttacking");
             animator.SetTrigger("isAttacking");
             StartCoroutine(AttackFxRoutine());
-            playerHealth.UpdateHealth(-damageAmount);
-
+            //sound
+            StartCoroutine(DamageWithDelay());
             yield return new WaitForSeconds(attackDuration + timeBetweenAttacks);
         }
 
         isAttacking = false;
+    }
+
+    IEnumerator DamageWithDelay()
+    {
+        yield return new WaitForSeconds(damageDelay);
+
+        if (player != null && playerHealth != null)
+        {
+            float distFromPlayer = Vector3.Distance(transform.position, player.position);
+
+            if (distFromPlayer <= attackRange)
+            {
+                Debug.Log("Damaged Player!");
+                playerHealth.UpdateHealth(-damageAmount);
+            }
+            else
+            {
+                Debug.Log("Player too far, no damage done!");
+            }
+        }
     }
 
     IEnumerator AttackFxRoutine()

@@ -14986,6 +14986,14 @@ MonoBehaviour:
   teleportEffect: {fileID: 4171772691098152632}
   attackEffect: {fileID: 5273775352708417534}
   teleportsBeforeAttack: 0
+  minAttacks: 2
+  maxAttacks: 5
+  timeBetweenAttacks: 1.5
+  teleportCooldown: 10
+  safeTimeBeforeTeleport: 2
+  damageAmount: 10
+  attackRange: 6
+  damageDelay: 0.3
 --- !u!4 &2946931678596095152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bf3e4c0e40f1ce04984335cfe7241e18, type: 3}
