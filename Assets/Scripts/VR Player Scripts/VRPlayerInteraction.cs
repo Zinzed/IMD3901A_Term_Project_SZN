@@ -20,7 +20,7 @@ public class VRPlayerInteraction : MonoBehaviour
     { "fireEnemy_mat", new Color(253/255f, 156/255f, 183/255f) }, // pink
     { "earthEnemy_mat", new Color(143/255f, 240/255f, 112/255f) }, // green
     { "waterEnemy_mat", new Color(128/255f, 215/255f, 244/255f) }, // blue
-    { "darkPurple_TEMP", new Color(38/255f, 29/255f, 91/255f) } // dark purple
+    { "finalBoss_mat", new Color(38/255f, 29/255f, 91/255f) } // dark purple
 };
 
     void Start()
