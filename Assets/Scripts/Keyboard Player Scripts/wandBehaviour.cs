@@ -7,7 +7,8 @@ public class wandBehaviour : MonoBehaviour
     [Header("Colours")]
     public List<Color> colours = new List<Color>();
 
-    public Renderer wandLight;
+    public Light wandLight;
+    public Renderer lightBulbMat;
     public ParticleSystem wandParticles;
     public Color CurrentColor { get; private set; }
 
@@ -53,8 +54,14 @@ public class wandBehaviour : MonoBehaviour
 
         // Change light color
         if (wandLight != null)
-            wandLight.material.color = newColour;
-            wandLight.material.SetColor("_EmissionColor", newColour);
+            wandLight.color = newColour;
+
+         // Change light bubl material   
+        if (lightBulbMat != null)
+        {
+            lightBulbMat.material.color = newColour;
+            lightBulbMat.material.SetColor("_EmissionColor", newColour);
+        }
 
         // Change particle color
         if (wandParticles != null)

@@ -6,7 +6,8 @@ public class VRWandBehaviour : MonoBehaviour
     [Header("Colours")]
     public List<Color> colours = new List<Color>();
 
-    public Renderer wandLight;
+    public Light wandLight;
+    public Renderer lightBulbMat;
     public ParticleSystem wandParticles;
     public Color CurrentColor { get; private set; }
 
@@ -37,11 +38,15 @@ public class VRWandBehaviour : MonoBehaviour
     {
         CurrentColor = newColour;
 
-        //change light color
+        // Change light color
         if (wandLight != null)
+            wandLight.color = newColour;
+
+        // Change light bubl material   
+        if (lightBulbMat != null)
         {
-            wandLight.material.color = newColour;
-            wandLight.material.SetColor("_EmissionColor", newColour);
+            lightBulbMat.material.color = newColour;
+            lightBulbMat.material.SetColor("_EmissionColor", newColour);
         }
 
         //change particle color
