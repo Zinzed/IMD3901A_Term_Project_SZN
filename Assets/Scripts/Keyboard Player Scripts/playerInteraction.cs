@@ -56,13 +56,19 @@ public class playerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        //Debug.Log("Update running");
         canInteract = false;
         enemy = null;
         Color currentTargetColor = Color.clear;
         float sphereRadius = 0.2f;
 
-        if (Physics.SphereCast(playerCamera.transform.position, sphereRadius, playerCamera.transform.forward, out RaycastHit hit, interactRange))
+        RaycastHit hit;
+        bool didHit = Physics.SphereCast(playerCamera.transform.position, sphereRadius, playerCamera.transform.forward, out hit, interactRange);
+
+        if (didHit)
         {
+            //Debug.Log("Hit: " + hit.collider.name + " Tag: " + hit.collider.tag);
             if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("FinalEnemy"))
             {
                 canInteract = true;
@@ -135,49 +141,47 @@ public class playerInteraction : MonoBehaviour
 
         uiBehaviourScript.SetInteract(canInteract);
 
-        if (enemy != null && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            if (enemy.gameObject == null) return;
-            // Get the wand light color from your wand script
+            if (enemy == null && !hit.collider.CompareTag("FinalEnemy")) return;
+            // Get the wand light color from the wand script
             Color wandColor = wandBehaviourScript.CurrentColor;
 
             // Calculate "distance" between colors to handle slight rounding differences
             float colorDiff = Vector4.Distance(currentTargetColor, wandColor);
-
+            
             if (colorDiff < 0.1f) // 0.1 allows for tiny variations
             {
-     
-
-                if (enemy == null || enemy.isDead) return;  // nothing happens if already dead
-
-
                 // Check if this enemy is actually the Boss
-                if (enemy.CompareTag("FinalEnemy"))
+                if (hit.collider.CompareTag("FinalEnemy"))
                 {
-                    if (!isBossDead) HandleBossHit(enemy.gameObject);
-                }
-                else
-                {
-                    // spawn particle effect at enemy position
-                    if (hitEffect != null)
+                    Debug.Log("Boss was hit!");
+
+                    if (!isBossDead)
                     {
-                        hitEffect.transform.position = enemy.transform.position;
-                        hitEffect.SetActive(true);
-
-                        ParticleSystem ps = hitEffect.GetComponent<ParticleSystem>();
-                        if (ps != null)
-                        {
-                            ps.Clear();
-                            ps.Play();
-                        }
-
-                        StartCoroutine(DisableEffectAfterDelay(2f));
+                        HandleBossHit(hit.collider.gameObject);
                     }
-
-                    // Normal enemy logic
-                    enemy.Kill();
-                    enemiesKilled++;
+                    return;
                 }
+
+                if (enemy == null) return;
+
+                // spawn particle effect at enemy position
+                if (hitEffect != null)
+                {
+                    // Create new instance of the particle effect at the enemy's position
+                    GameObject tempEffect = Instantiate(hitEffect, enemy.transform.position, Quaternion.identity);
+
+                    // Ensures it is active 
+                    tempEffect.SetActive(true);
+
+                    // destroy
+                    Destroy(tempEffect, 2f);
+                }
+
+                // Normal enemy logic
+                enemy.Kill();
+                enemiesKilled++;
             }
             else
             {
@@ -193,18 +197,21 @@ public class playerInteraction : MonoBehaviour
 
         bossHits++;
         //Debug.Log($"Boss Hit! {bossHits}/{requiredBossHits}");
+        Debug.Log("Boss was hit!");
+        Debug.Log("Boss hits: " + bossHits);
 
         if (bossHits >= requiredBossHits)
         {
             isBossDead = true;
-            FinalBossActions bossActions = bossObj.GetComponent<FinalBossActions>();
+            FinalBossActions bossActions = bossObj.GetComponentInParent<FinalBossActions>();
             if (bossActions != null)
             {
                 bossActions.Die();
+                Debug.Log("Boss reached required hits!");
             }
             else
             {
-                Destroy(bossObj );
+                Debug.LogError("FinalBossActions not found on boss!");
             }
             Debug.Log("Final Boss Defeated!");
 

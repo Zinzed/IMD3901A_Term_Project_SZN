@@ -52,6 +52,11 @@ public class FinalBossBehaviour : MonoBehaviour
 
     void Update()
     {
+        if (bossActions != null && bossActions.isDead)
+        {
+            return;
+        }
+
         HandleMovement();
 
         if (bossSpawned) return;
@@ -164,7 +169,7 @@ public class FinalBossBehaviour : MonoBehaviour
 
     IEnumerator TeleportLoop()
     {
-        while (true)
+        while (bossActions != null && !bossActions.isDead)
         {
             Teleport();
             yield return new WaitForSeconds(teleportCooldown);
@@ -173,7 +178,7 @@ public class FinalBossBehaviour : MonoBehaviour
 
     IEnumerator MovementLoop()
     {
-        while (true)
+        while (bossActions != null && !bossActions.isDead)
         {
             SetNewMoveDirection();
             yield return new WaitForSeconds(directionChangeTime);
@@ -225,7 +230,7 @@ public class FinalBossBehaviour : MonoBehaviour
 
         int lastIndex = -1;
 
-        while (true)
+        while (bossActions != null && !bossActions.isDead)
         {
             if (finalBoss == null)
             {
@@ -271,8 +276,19 @@ public class FinalBossBehaviour : MonoBehaviour
 
     void HandleMovement()
     {
-        if (rb == null || playerTransform == null)
+        if (bossActions != null && bossActions.isDead)
         {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            return;
+        }
+
+        if (rb == null || playerTransform == null || bossActions == null || bossActions.isDead)
+        {
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector3.zero;
+            }
             return;
         }
 

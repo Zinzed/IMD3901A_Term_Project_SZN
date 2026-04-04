@@ -12,7 +12,7 @@ public class FinalBossActions : MonoBehaviour
     public int teleportsBeforeAttack;
     private int teleportCount = 0;
 
-    private bool isDead = false;
+    public bool isDead { get; private set; } = false;
     private bool isAttacking = false;
 
     [SerializeField] private int minAttacks = 2;
@@ -142,12 +142,22 @@ public class FinalBossActions : MonoBehaviour
 
     public void Die()
     {
+        
         if (isDead)
         {
             return;
         }
 
+        Debug.Log("Die() called on boss");
         isDead = true;
+
+        Rigidbody rb = GetComponentInParent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
+
         animator.SetTrigger("isDead");
         Destroy(gameObject, 5.0f);
     }
