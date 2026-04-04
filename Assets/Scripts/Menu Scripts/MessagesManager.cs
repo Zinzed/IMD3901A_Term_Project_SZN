@@ -24,8 +24,13 @@ public class MessagesManager : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Instance.musicSource.Stop();
+
+        //AudioManager.Instance.PlayMusic("IntroCutscene");
+
         UpdateMessages();
         startBttn.SetActive(false);
+        previousBttn.interactable = false;
     }
 
     private void Update()
@@ -49,6 +54,12 @@ public class MessagesManager : MonoBehaviour
         // disable buttons while typing
         nextBttn.interactable = false;
         previousBttn.interactable = false;
+
+        // if first message, disable previous button
+        if (currentBubbleIndex == 0)
+        {
+            previousBttn.interactable = false;
+        }
 
         for (int i = 0; i < fullText.Length; i++)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        } else
+        } 
+        else
         {
             Destroy(gameObject);
         }
@@ -39,11 +41,16 @@ public class AudioManager : MonoBehaviour
 
         else
         {
-            musicSource.clip = s.clip;
-            musicSource.Play();
+            if (musicSource.clip != s.clip)
+            {
+                musicSource.clip = s.clip;
+                musicSource.Play();
+            }
         }
 
         
+
+
     }
 
     public void PlaySFX(string name )
@@ -59,6 +66,36 @@ public class AudioManager : MonoBehaviour
         {
             sfxSource.clip = s.clip;
             sfxSource.PlayOneShot(s.clip);
+        }
+    }
+
+    private void OnEnable()
+    {
+        // Subscribe to scene loaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe to prevent memory leaks
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Change music based on scene name
+        switch (scene.name)
+        {
+            case "IntroCutScene":
+                PlayMusic("IntroCutScene");
+                break;
+            case "MainGame":
+                PlayMusic("SpaceAmbience");
+                break;
+            // Add more scenes as needed
+            default:
+                PlayMusic("Theme"); // Default music
+                break;
         }
     }
 
