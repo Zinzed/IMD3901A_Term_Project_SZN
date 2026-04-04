@@ -12,7 +12,7 @@ public class MessagesManager : MonoBehaviour
     [SerializeField] private List<GameObject> messageBubbles;
     [SerializeField] private bool autoAdvance = true; // Toggle for auto-advance feature
 
-    public AudioSource notificationSFX;
+    //public AudioSource notificationSFX;
 
     [SerializeField] private GameObject startBttn;
     [SerializeField] private Button nextBttn;
@@ -114,6 +114,8 @@ public class MessagesManager : MonoBehaviour
         {
             currentBubbleIndex++;
             UpdateMessages();
+            AudioManager.Instance.PlaySFX("SecondaryButton");
+
         }
     }
 
@@ -130,6 +132,7 @@ public class MessagesManager : MonoBehaviour
         {
             currentBubbleIndex--;
             UpdateMessages();
+            AudioManager.Instance.PlaySFX("SecondaryButton");
         }
     }
 
@@ -182,7 +185,7 @@ public class MessagesManager : MonoBehaviour
 
                 if (i == currentBubbleIndex)
                 {
-                    notificationSFX.Play();
+                    AudioManager.Instance.PlaySFX("MessageNotification");
                 }
             }
         }

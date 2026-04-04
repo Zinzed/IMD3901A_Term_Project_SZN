@@ -19,6 +19,9 @@ public class progressBar : MonoBehaviour
     }
     public void UpdateProgress(int amount)
     {
+        AudioManager.Instance.PlaySFX("LevelUp");
+
+
         targetProgress = Mathf.Clamp(targetProgress + amount, 0, maxProgress);
 
 
