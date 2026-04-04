@@ -104,17 +104,14 @@ public class VRWandAttack : MonoBehaviour
                 // spawn particle effect at enemy position
                 if (hitEffect != null)
                 {
-                    hitEffect.transform.position = enemy.transform.position;
-                    hitEffect.SetActive(true);
+                    // Create new instance of the particle effect at the enemy's position
+                    GameObject tempEffect = Instantiate(hitEffect, enemy.transform.position, Quaternion.identity);
 
-                    ParticleSystem ps = hitEffect.GetComponent<ParticleSystem>();
-                    if (ps != null)
-                    {
-                        ps.Clear();
-                        ps.Play();
-                    }
+                    // Ensures it is active 
+                    tempEffect.SetActive(true);
 
-                    StartCoroutine(DisableEffectAfterDelay(2f));
+                    // destroy
+                    Destroy(tempEffect, 2f);
                 }
 
                 Destroy(enemy.gameObject);
