@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class FinalBossBehaviour : MonoBehaviour
@@ -24,6 +25,13 @@ public class FinalBossBehaviour : MonoBehaviour
 
     private FinalBossActions bossActions;
 
+    [SerializeField] private float moveSpeed = 2.5f;
+    [SerializeField] private float moveRadius = 4.0f;
+    [SerializeField] private float directionChangeTime = 2.0f;
+    private Vector3 moveDirection;
+
+    private Rigidbody rb;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,11 +47,13 @@ public class FinalBossBehaviour : MonoBehaviour
         }
 
         if (finalBoss != null)
-            finalBoss.SetActive(false);
+            finalBoss.SetActive(false);        
     }
 
     void Update()
     {
+        HandleMovement();
+
         if (bossSpawned) return;
 
         if (playerInteraction == null && vrInteraction == null)
@@ -87,7 +97,7 @@ public class FinalBossBehaviour : MonoBehaviour
             }
 
             SpawnBoss();
-        }
+        }        
     }
 
     void SpawnBoss()
@@ -135,6 +145,9 @@ public class FinalBossBehaviour : MonoBehaviour
         yield return new WaitForSeconds(spawnDelay);
 
         finalBoss.SetActive(true);
+
+        rb = finalBoss.GetComponent<Rigidbody>();
+
         bossActions = finalBoss.GetComponent<FinalBossActions>();
         Debug.Log("All enemies killed. Final boss spawned!");
 
@@ -145,6 +158,8 @@ public class FinalBossBehaviour : MonoBehaviour
         StartCoroutine(BossSoundLoop());
 
         StartCoroutine(TeleportLoop());
+
+        StartCoroutine(MovementLoop());
     }
 
     IEnumerator TeleportLoop()
@@ -156,13 +171,44 @@ public class FinalBossBehaviour : MonoBehaviour
         }
     }
 
+    IEnumerator MovementLoop()
+    {
+        while (true)
+        {
+            SetNewMoveDirection();
+            yield return new WaitForSeconds(directionChangeTime);
+        }
+    }
+
     void Teleport()
     {
         if (finalBoss == null || playerTransform == null)
+        {
             return;
+        }
 
-        Vector3 randomOffset = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
-        finalBoss.transform.position = playerTransform.position + randomOffset;
+        Vector3 randomOffset = new Vector3(Random.Range(-5.0f, 5.0f), 0, Random.Range(-5.0f, 5.0f));
+        Vector3 targetPos = playerTransform.position + randomOffset;
+
+        RaycastHit hit;
+        if (Physics.Raycast(targetPos + Vector3.up * 10.0f, Vector3.down, out hit, 20.0f))
+        {
+            targetPos = hit.point;
+        }
+
+        if (Physics.CheckSphere(targetPos + Vector3.up * 0.5f, 0.8f))
+        {
+            randomOffset = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
+            targetPos = playerTransform.position + randomOffset;
+
+            if (Physics.Raycast(targetPos + Vector3.up * 10f, Vector3.down, out hit, 20f))
+            {
+                targetPos = hit.point;
+            }
+        }
+
+        finalBoss.transform.position = targetPos;
+        moveDirection = Vector3.zero;
 
         if (bossActions != null)
         {
@@ -205,6 +251,57 @@ public class FinalBossBehaviour : MonoBehaviour
 
             yield return new WaitForSeconds(clip.length);
             yield return new WaitForSeconds(Random.Range(0.3f, 1.2f));
+        }
+    }
+
+    void SetNewMoveDirection()
+    {
+        if (playerTransform == null)
+        {
+            return;
+        }
+
+        Vector3 toPlayer = (playerTransform.position - finalBoss.transform.position).normalized;
+        Vector3 side = Vector3.Cross(toPlayer, Vector3.up).normalized;
+        moveDirection = (Random.value > 0.5f) ? side : -side;
+
+        moveDirection += new Vector3(Random.Range(-0.3f, 0.3f), 0, Random.Range(-0.3f, 0.3f));
+        moveDirection.Normalize();
+    }
+
+    void HandleMovement()
+    {
+        if (rb == null || playerTransform == null)
+        {
+            return;
+        }
+
+        Vector3 toPlayer = playerTransform.position - rb.position;
+
+        if (toPlayer.magnitude > moveRadius)
+        {
+            moveDirection = toPlayer.normalized;
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(rb.position, moveDirection, out hit, 1.5f))
+        {
+            SetNewMoveDirection();
+        }
+
+        Vector3 velocity = moveDirection * moveSpeed;
+        rb.linearVelocity = new Vector3(velocity.x, 0f, velocity.z);
+
+        //look in the direction of the player
+        Vector3 lookDirection = playerTransform.position - finalBoss.transform.position;
+        lookDirection.y = 0;
+
+        if (lookDirection != Vector3.zero)
+        {
+           finalBoss.transform.rotation = Quaternion.Slerp(
+               finalBoss.transform.rotation,
+               Quaternion.LookRotation(lookDirection),
+               Time.deltaTime * 5f);
         }
     }
 }
