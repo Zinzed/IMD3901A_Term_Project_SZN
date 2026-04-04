@@ -86,8 +86,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   wanderRadius: 10
+  chaseRadius: 12
+  stopDistance: 2.5
   minHeight: 0.5
   maxHeight: 1.5
+  hoverHeight: 1
+  isChasing: 0
+  separationRadius: 1.5
+  separationStrength: 1.5
+  damageCooldown: 1
+  isDead: 0
+  animator: {fileID: 0}
+  destroyDelay: 2
 --- !u!65 &4744838504344051084
 BoxCollider:
   m_ObjectHideFlags: 0
