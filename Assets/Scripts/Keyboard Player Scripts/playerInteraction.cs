@@ -182,6 +182,7 @@ public class playerInteraction : MonoBehaviour
                 // Normal enemy logic
                 enemy.Kill();
                 enemiesKilled++;
+                AudioManager.Instance.PlaySFX("MagicCasting");
             }
             else
             {
@@ -196,6 +197,8 @@ public class playerInteraction : MonoBehaviour
         if (isBossDead) return;
 
         bossHits++;
+        AudioManager.Instance.PlaySFX("BossMagicCasting");
+
         //Debug.Log($"Boss Hit! {bossHits}/{requiredBossHits}");
         Debug.Log("Boss was hit!");
         Debug.Log("Boss hits: " + bossHits);

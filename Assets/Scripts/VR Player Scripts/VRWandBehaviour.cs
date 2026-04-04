@@ -25,6 +25,7 @@ public class VRWandBehaviour : MonoBehaviour
     //Public function called from wand grab interactable component
     public void CycleColour()
     {
+        AudioManager.Instance.PlaySFX("BossMagicCasting");
         if (colours.Count == 0) return;
 
         Debug.Log("Cycling to next color!");

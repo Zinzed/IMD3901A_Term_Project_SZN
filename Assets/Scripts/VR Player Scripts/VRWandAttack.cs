@@ -113,7 +113,7 @@ public class VRWandAttack : MonoBehaviour
                     // destroy
                     Destroy(tempEffect, 2f);
                 }
-
+                AudioManager.Instance.PlaySFX("MagicCasting");
                 Destroy(enemy.gameObject);
 
                 if (playerInteractionScript != null)

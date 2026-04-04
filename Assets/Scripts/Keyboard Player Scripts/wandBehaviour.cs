@@ -20,7 +20,7 @@ public class wandBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Space key pressed");
+            //Debug.Log("Space key pressed");
             //UpdateMaterial();
             CycleColour();
         }
@@ -29,7 +29,7 @@ public class wandBehaviour : MonoBehaviour
 
     void CycleColour()
     {
-
+        AudioManager.Instance.PlaySFX("ColourSwitch");
         // If the list is empty, stop here 
         if (colours.Count == 0)
         {
