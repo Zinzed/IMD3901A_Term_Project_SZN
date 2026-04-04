@@ -95,7 +95,7 @@ public class FinalBossBehaviour : MonoBehaviour
             {
                 Debug.LogError("Player has no progress script!"); // Debug missing component
             }
-
+            CombinePowers();
             SpawnBoss();
         }        
     }
@@ -151,7 +151,7 @@ public class FinalBossBehaviour : MonoBehaviour
         bossActions = finalBoss.GetComponent<FinalBossActions>();
         Debug.Log("All enemies killed. Final boss spawned!");
 
-        CombinePowers();
+        //CombinePowers();
 
         yield return null;
 
