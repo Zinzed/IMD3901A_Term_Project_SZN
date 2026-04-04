@@ -14,7 +14,7 @@ public class wandBehaviour : MonoBehaviour
 
     private int currentIndex = 0;
 
-
+    //
     // Update is called once per frame
     void Update()
     {
