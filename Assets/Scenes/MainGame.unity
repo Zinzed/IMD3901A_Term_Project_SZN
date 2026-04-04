@@ -21455,7 +21455,6 @@ GameObject:
   - component: {fileID: 1411060198}
   - component: {fileID: 1411060199}
   - component: {fileID: 1411060200}
-  - component: {fileID: 1411060201}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -21587,14 +21586,6 @@ MonoBehaviour:
   currentHealth: 0
   slider: {fileID: 183362878}
   sceneLoader: {fileID: 221485573}
---- !u!81 &1411060201
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1411060193}
-  m_Enabled: 1
 --- !u!114 &1413604367
 MonoBehaviour:
   m_ObjectHideFlags: 0
