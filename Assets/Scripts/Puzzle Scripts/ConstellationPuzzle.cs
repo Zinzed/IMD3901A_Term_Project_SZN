@@ -12,7 +12,7 @@ public class ConstellationPuzzle : MonoBehaviour
     // draws lines between stars as player connects them
     public LineRenderer line;
 
-    public progressBar playerProgress;
+    public List<progressBar> playerProgressBars = new List<progressBar>();
 
     [Header("Star Materials")]
     public Material yellowLightStars;
@@ -87,9 +87,15 @@ public class ConstellationPuzzle : MonoBehaviour
 
         Debug.Log("yayyy");
 
-        if (playerProgress != null)
+        if (playerProgressBars != null && playerProgressBars.Count > 0)
         {
-            playerProgress.UpdateProgress(+10);
+            foreach (progressBar bar in playerProgressBars)
+            {
+                if (bar != null)
+                {
+                    bar.UpdateProgress(10);
+                }
+            }
         }
         else
         {

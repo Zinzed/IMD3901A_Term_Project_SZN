@@ -9,7 +9,9 @@ public class playerInteraction : MonoBehaviour
     public Camera playerCamera;
     public uiBehaviour uiBehaviourScript;
     public wandBehaviour wandBehaviourScript;
-    public progressBar playerProgress;
+
+    public List<progressBar> playerProgressBars = new List<progressBar>();
+
     public GameObject puzzleCover;
 
     public bool canInteract;
@@ -228,10 +230,15 @@ public class playerInteraction : MonoBehaviour
                 Debug.Log("Puzzle cover removed!");
             }
 
-            if (playerProgress != null)
+            if (playerProgressBars != null && playerProgressBars.Count > 0)
             {
-                playerProgress.UpdateProgress(+10); // Increment progress
-
+                foreach (progressBar bar in playerProgressBars)
+                {
+                    if (bar != null)
+                    {
+                        bar.UpdateProgress(10);
+                    }
+                }
             }
             else
             {
