@@ -24,6 +24,7 @@ public class FinalBossBehaviour : MonoBehaviour
     [SerializeField] private float teleportCooldown = 10.0f;
 
     [SerializeField] private AudioClip[] bossSounds;
+    [SerializeField] private AudioSource bossIntroSource;
     [SerializeField] private AudioSource bossAudioSource;
     [SerializeField] private AudioClip bossDeathSound;
 
@@ -175,7 +176,9 @@ public class FinalBossBehaviour : MonoBehaviour
 
         if (bossIntro != null && playerTransform != null)
         {
-            AudioSource.PlayClipAtPoint(bossIntro, playerTransform.position);
+            bossIntroSource.clip = bossIntro;
+            bossIntroSource.volume = 1.0f;
+            bossIntroSource.Play();
         }
 
         yield return new WaitForSeconds(spawnDelay);
