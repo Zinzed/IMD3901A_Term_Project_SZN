@@ -8,6 +8,8 @@ public class progressBar : MonoBehaviour
 
     public int maxProgress = 30;
 
+    public bool canTriggerWin = true;
+
     private int targetProgress;
 
     public Slider slider;
@@ -42,7 +44,7 @@ public class progressBar : MonoBehaviour
 
         slider.value = targetProgress;
 
-        if (slider.value >= maxProgress)
+        if (slider.value >= maxProgress && canTriggerWin)
             Win();
     }
 
