@@ -22,10 +22,12 @@ public class enemyAttack : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] attackSounds;
 
-    private bool isAttacking = false;
-
     [SerializeField] private float fadeDuration = 0.5f;
     private Coroutine fadeCoroutine;
+
+    private bool isAttacking = false;
+    private bool isTurning = false;
+    [SerializeField] private float rotationSpeed = 3.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -61,6 +63,7 @@ public class enemyAttack : MonoBehaviour
             if (!isAttacking)
             {
                 isAttacking = true;
+                enemy.isAttacking = true;
 
                 if (fadeCoroutine != null)
                 {
@@ -77,10 +80,13 @@ public class enemyAttack : MonoBehaviour
                     audioSource.Play();
                 }
             }
+            
             if (Time.time >= nextFireTime)
             {
-                attack.transform.LookAt(GameObject.FindWithTag("Player").transform);
+                //FacePlayer();
+                //attack.transform.LookAt(player);
                 attack.Play();
+                //StartCoroutine(smoothFacePlayerAttack());
                 nextFireTime = Time.time + fireRate;
             }
             if (attack.isPlaying && distance <= damageRange && Time.time >= lastDamageTime + damageCooldown)
@@ -104,12 +110,13 @@ public class enemyAttack : MonoBehaviour
             StopAttacking();
         }
     }
-    //stp
+    
     void StopAttacking()
     {
         if (isAttacking)
         {
             isAttacking = false;
+            enemy.isAttacking = false;
             
             if (attack.isPlaying)
             {

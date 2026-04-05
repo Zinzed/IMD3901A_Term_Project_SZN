@@ -38,6 +38,8 @@ public class enemyBehaviour : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private float destroyDelay = 2.0f;
 
+    public bool isAttacking = false;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -89,6 +91,11 @@ public class enemyBehaviour : MonoBehaviour
         }
 
         MoveEnemy();
+
+        if (isAttacking)
+        {
+            RotateTowardsPlayer();
+        }
     }
     
     void MoveEnemy()
@@ -122,7 +129,11 @@ public class enemyBehaviour : MonoBehaviour
         }
 
         Vector3 finalMove = direction + separation * separationStrength;
-
+        if (isAttacking)
+        {
+            rigidBody.linearVelocity = Vector3.zero;
+            return;
+        }
 
         if (finalMove.sqrMagnitude < 0.01f)
         {
@@ -186,5 +197,22 @@ public class enemyBehaviour : MonoBehaviour
         }
 
         Destroy(gameObject, destroyDelay);
+    }
+
+    void RotateTowardsPlayer()
+    {
+        if (playerTransform == null) return;
+
+        Vector3 direction = playerTransform.position - rigidBody.position;
+        direction.y = 0;
+
+        if (direction.sqrMagnitude < 0.01f) return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        rigidBody.MoveRotation(Quaternion.Slerp
+            (rigidBody.rotation,
+            targetRotation,
+            Time.fixedDeltaTime * 5f));
     }
 }
