@@ -21,6 +21,7 @@ public class enemyAttack : MonoBehaviour
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] attackSounds;
+    [SerializeField] private AudioClip deathSound;
 
     [SerializeField] private float fadeDuration = 0.5f;
     private Coroutine fadeCoroutine;
@@ -52,6 +53,11 @@ public class enemyAttack : MonoBehaviour
     void Update()
     {
         if (enemy == null || attack == null || player == null)
+        {
+            return;
+        }
+
+        if (enemy.isDead)
         {
             return;
         }
@@ -107,12 +113,17 @@ public class enemyAttack : MonoBehaviour
 
         if (enemy.isDead)
         {
-            StopAttacking();
+            return;
         }
     }
     
     void StopAttacking()
     {
+        if (enemy.isDead)
+        {
+            return;
+        }
+
         if (isAttacking)
         {
             isAttacking = false;
@@ -146,5 +157,26 @@ public class enemyAttack : MonoBehaviour
 
         audioSource.Stop();
         audioSource.volume = startVolume;
+    }
+
+    public void PlayDeathAudio()
+    {
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+            fadeCoroutine = null;
+        }
+
+        isAttacking = false;
+        enemy.isAttacking = false;
+
+        if (audioSource != null && deathSound != null)
+        {
+            audioSource.Stop();
+            audioSource.loop = false;
+            audioSource.volume = 1.0f;
+            audioSource.clip = deathSound;
+            audioSource.Play();
+        }
     }
 }
