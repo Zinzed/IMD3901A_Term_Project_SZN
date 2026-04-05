@@ -14,6 +14,16 @@ public class PlayerController : MonoBehaviour
 
     public Animator wandAnimator;
 
+    public float bobSpeed = 6.0f;
+    public float bobAmount = 0.05f;
+
+    private float defaultYPos;
+    private float timer = 0;
+
+    public AudioSource footstepSource;
+    public float maxFootstepVolume = 0.5f;
+    public float fadeSpeed = 5.0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        defaultYPos = cameraTransform.localPosition.y;
 
     }
 
@@ -61,12 +72,58 @@ public class PlayerController : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
 
+        if (moveInput != Vector2.zero)
+        {
+            timer += Time.deltaTime * bobSpeed;
+            float bobOffset = Mathf.Sin(timer) * bobAmount;
+
+            Vector3 newPos = cameraTransform.localPosition;
+            newPos.y = defaultYPos + bobOffset;
+            cameraTransform.localPosition = newPos;
+        }
+        else
+        {
+            timer = 0;
+
+            Vector3 newPos = cameraTransform.localPosition;
+            newPos.y = Mathf.Lerp(newPos.y, defaultYPos, Time.deltaTime * 5f);
+            cameraTransform.localPosition = newPos;
+        }
+
+        bool isMoving = moveInput != Vector2.zero;
+
+        if (isMoving)
+        {
+            if (!footstepSource.isPlaying)
+            {
+                footstepSource.Play();
+            }
+
+            footstepSource.volume = Mathf.Lerp(
+                footstepSource.volume,
+                maxFootstepVolume,
+                Time.deltaTime * fadeSpeed
+            );
+        }
+        else
+        {
+            footstepSource.volume = Mathf.Lerp(
+                footstepSource.volume,
+                0f,
+                Time.deltaTime * fadeSpeed
+            );
+
+            if (footstepSource.volume < 0.01f && footstepSource.isPlaying)
+            {
+                footstepSource.Stop();
+            }
+        }
+
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             wandAnimator.SetTrigger("cast");
             
         }
-
 
     }
 
