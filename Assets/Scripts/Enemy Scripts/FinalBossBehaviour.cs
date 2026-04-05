@@ -8,6 +8,7 @@ public class FinalBossBehaviour : MonoBehaviour
     public GameObject finalBoss;
     public float teleportRate = 5f;
 
+    //private bool enemiesCleared = false;
     public List<progressBar> playerProgressBars = new List<progressBar>();
 
     private Transform playerTransform;
@@ -92,8 +93,10 @@ public class FinalBossBehaviour : MonoBehaviour
         Debug.Log("Enemies left: " + remainingEnemies.Length);
 
         // check if the number of killed enemies matches the total found at the start
-        if (remainingEnemies.Length == 0)
+        if (remainingEnemies.Length == 0 )
         {
+            //enemiesCleared = true;
+
             if (playerProgressBars != null && playerProgressBars.Count > 0)
             {
                 foreach (progressBar bar in playerProgressBars)
