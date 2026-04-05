@@ -2145,7 +2145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossBehaviour: {fileID: 289293147}
   musicSource: {fileID: 212661182}
-  gameplayMusic: {fileID: 8300000, guid: bacf2d12ef9a4e34480be5bd76efd55d, type: 3}
+  gameplayMusic: {fileID: 8300000, guid: 308d599017659934295bc8f4edb1c64a, type: 3}
   bossFightMusic: {fileID: 8300000, guid: 3484a559ab5be1c488995d2783a2188c, type: 3}
 --- !u!1 &214794602
 GameObject:
