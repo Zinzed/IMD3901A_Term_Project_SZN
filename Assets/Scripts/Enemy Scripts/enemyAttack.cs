@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,7 +19,13 @@ public class enemyAttack : MonoBehaviour
     private Transform player;
     private health playerHealth;
 
-    [SerializeField] private AudioSource[] attackSounds;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] attackSounds;
+
+    private bool isAttacking = false;
+
+    [SerializeField] private float fadeDuration = 0.5f;
+    private Coroutine fadeCoroutine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,6 +58,25 @@ public class enemyAttack : MonoBehaviour
 
         if (enemy.isChasing)
         {
+            if (!isAttacking)
+            {
+                isAttacking = true;
+
+                if (fadeCoroutine != null)
+                {
+                    StopCoroutine(fadeCoroutine);
+                }
+
+                audioSource.volume = 0.5f;
+
+                if(attackSounds.Length > 0)
+                {
+                    int index = Random.Range(0, attackSounds.Length);
+                    audioSource.clip = attackSounds[index];
+                    audioSource.loop = true;
+                    audioSource.Play();
+                }
+            }
             if (Time.time >= nextFireTime)
             {
                 attack.transform.LookAt(GameObject.FindWithTag("Player").transform);
@@ -69,10 +96,48 @@ public class enemyAttack : MonoBehaviour
         }
         else
         {
+            StopAttacking();
+        }
+
+        if (enemy.isDead)
+        {
+            StopAttacking();
+        }
+    }
+    //stp
+    void StopAttacking()
+    {
+        if (isAttacking)
+        {
+            isAttacking = false;
+            
             if (attack.isPlaying)
             {
                 attack.Stop();
             }
+            if (fadeCoroutine != null)
+            {
+                StopCoroutine(fadeCoroutine);
+            }
+
+            fadeCoroutine = StartCoroutine(FadeOutAudio());
         }
+    }
+
+    IEnumerator FadeOutAudio()
+    {
+        float startVolume = audioSource.volume;
+
+        float time = 0.0f;
+
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, 0.0f, time / fadeDuration);
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 }

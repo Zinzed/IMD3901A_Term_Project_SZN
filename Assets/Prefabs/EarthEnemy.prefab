@@ -5027,10 +5027,11 @@ MonoBehaviour:
   damageRange: 6
   damageAmount: 1
   damageCooldown: 1
+  audioSource: {fileID: 1882278416809817248}
   attackSounds:
-  - {fileID: 1882278416809817248}
-  - {fileID: 890589267120723903}
-  - {fileID: 29845886896914971}
+  - {fileID: 8300000, guid: ced7f734b7347c34a9fa32ac5d80672d, type: 3}
+  - {fileID: 8300000, guid: 85f1ffd70a5897d4c85549138b39f791, type: 3}
+  - {fileID: 8300000, guid: ad91ba6dce04a1f4db1171f75dba68d6, type: 3}
 --- !u!82 &1882278416809817248
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5044,7 +5045,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: ced7f734b7347c34a9fa32ac5d80672d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

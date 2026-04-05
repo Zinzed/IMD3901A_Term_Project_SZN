@@ -2119,6 +2119,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 212d62c320a4e8343b9a1d18527ae065, type: 3}
   - {fileID: 8300000, guid: 23a5b9395dcd1b1468644b073b77f166, type: 3}
   bossAudioSource: {fileID: 31264517}
+  moveSpeed: 2.5
+  moveRadius: 4
+  directionChangeTime: 2
 --- !u!4 &289293148
 Transform:
   m_ObjectHideFlags: 0
@@ -4015,7 +4018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6298853663714301395, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6638823327050469225, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4351,7 +4354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &511733001
 Transform:
   m_ObjectHideFlags: 0
@@ -4886,6 +4889,7 @@ MonoBehaviour:
   - {r: 0.56078434, g: 0.9411765, b: 0.4392157, a: 0}
   - {r: 0.5019608, g: 0.84313726, b: 0.95686275, a: 0}
   wandLight: {fileID: 1348295981}
+  lightBulbMat: {fileID: 0}
   wandParticles: {fileID: 1439222037}
 --- !u!114 &538477109
 MonoBehaviour:
@@ -6035,7 +6039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &657969411
 Transform:
   m_ObjectHideFlags: 0
@@ -15782,6 +15786,7 @@ MonoBehaviour:
   - {r: 0.56078434, g: 0.9411765, b: 0.4392157, a: 1}
   - {r: 0.5019608, g: 0.84313726, b: 0.95686275, a: 1}
   wandLight: {fileID: 1764613435}
+  lightBulbMat: {fileID: 0}
   wandParticles: {fileID: 856872318}
 --- !u!64 &1111946688
 MeshCollider:
@@ -28400,7 +28405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3444763468711299562, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
