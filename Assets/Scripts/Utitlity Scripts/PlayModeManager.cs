@@ -9,6 +9,10 @@ public class PlayModeManager : MonoBehaviour
     public GameObject VRWand;
     public GameObject portal;
 
+    public GameObject desktopCanvas;
+    public GameObject vrCanvas;
+
+
     void Awake()
     {
         //gets input from the player prefs and sets the players as active or disabled based on that
@@ -28,5 +32,8 @@ public class PlayModeManager : MonoBehaviour
         VRPlayer.SetActive(mode == 1);
         VRWand.SetActive(mode == 1);
         portal.SetActive(mode == 1);
+
+        desktopCanvas.SetActive(mode == 0);
+        vrCanvas.SetActive(mode == 1);
     }
 }
