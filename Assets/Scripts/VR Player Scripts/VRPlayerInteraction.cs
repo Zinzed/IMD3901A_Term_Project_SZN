@@ -148,6 +148,10 @@ public class VRPlayerInteraction : MonoBehaviour
                 bossActions.Die();
                 Debug.Log("VR Boss defeated!");
             }
+            else
+            {
+                Debug.LogError("FinalBossActions not found on boss!");
+            }
 
             //2.reveal the Puzzle
             if (puzzleCover != null)
@@ -155,10 +159,7 @@ public class VRPlayerInteraction : MonoBehaviour
                 Destroy(puzzleCover);
                 Debug.Log("VR Logic: Puzzle cover removed!");
             }
-            else
-            {
-                Debug.LogWarning("VR Logic: Puzzle Cover reference is missing in Inspector!");
-            }
+            
 
             if (playerProgressBars != null && playerProgressBars.Count > 0)
             {
@@ -172,10 +173,7 @@ public class VRPlayerInteraction : MonoBehaviour
                 }
             }
 
-            else
-            {
-                Debug.LogError("FinalBossActions not found on boss!");
-            }
+            
         }
     }
 

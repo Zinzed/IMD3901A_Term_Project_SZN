@@ -21,6 +21,9 @@ public class progressBar : MonoBehaviour
     }
     public void UpdateProgress(int amount)
     {
+        // if this progress bar's object is hidden don't count the points
+        if (!gameObject.activeInHierarchy) return;
+
         AudioManager.Instance.PlaySFX("LevelUp");
 
 
@@ -44,7 +47,7 @@ public class progressBar : MonoBehaviour
 
         slider.value = targetProgress;
 
-        if (slider.value >= maxProgress && canTriggerWin)
+        if (targetProgress >= maxProgress)
             Win();
     }
 

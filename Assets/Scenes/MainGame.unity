@@ -4874,7 +4874,7 @@ LineRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
-    alignment: 1
+    alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
@@ -7595,6 +7595,10 @@ PrefabInstance:
     - target: {fileID: 1220865153369661551, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
       propertyPath: m_Name
       value: EarthEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220865153369661551, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1998105990644382421, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18542,7 +18546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a824c5a4c582c7408df22df987496c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLoader: {fileID: 0}
+  sceneLoader: {fileID: 221485573}
   maxProgress: 30
   canTriggerWin: 1
   slider: {fileID: 1035213008}
@@ -29240,7 +29244,7 @@ PrefabInstance:
       objectReference: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 6248954790245001002, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
       propertyPath: m_Parameters.alignment
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6501665834654019583, guid: 653ef04898aae6d41bd001416d0faaed, type: 3}
       propertyPath: m_RightHandTurnInput.m_InputActionReference
@@ -30229,6 +30233,7 @@ MonoBehaviour:
   portal: {fileID: 1810430243}
   desktopCanvas: {fileID: 1282131753}
   vrCanvas: {fileID: 2058475467}
+  desktopUI: {fileID: 1888291983}
 --- !u!1001 &1629850359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36100,7 +36105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3444763468711299562, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

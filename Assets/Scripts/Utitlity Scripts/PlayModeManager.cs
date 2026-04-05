@@ -11,7 +11,7 @@ public class PlayModeManager : MonoBehaviour
 
     public GameObject desktopCanvas;
     public GameObject vrCanvas;
-
+    public GameObject desktopUI;
 
     void Awake()
     {
@@ -34,6 +34,7 @@ public class PlayModeManager : MonoBehaviour
         portal.SetActive(mode == 1);
 
         desktopCanvas.SetActive(mode == 0);
+        desktopUI.SetActive(mode == 0);
         vrCanvas.SetActive(mode == 1);
     }
 }
