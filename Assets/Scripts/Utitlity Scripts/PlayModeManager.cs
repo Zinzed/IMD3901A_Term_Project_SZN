@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.XR.Hands;
 
 public class PlayModeManager : MonoBehaviour
 {
     public GameObject keyboardPlayer;
+
     public GameObject VRPlayer;
+    public GameObject VRWand;
+    public GameObject portal;
 
     void Awake()
     {
@@ -20,6 +24,9 @@ public class PlayModeManager : MonoBehaviour
         Debug.Log("player mode loaded: " + mode);
 
         keyboardPlayer.SetActive(mode == 0);
+
         VRPlayer.SetActive(mode == 1);
+        VRWand.SetActive(mode == 1);
+        portal.SetActive(mode == 1);
     }
 }
