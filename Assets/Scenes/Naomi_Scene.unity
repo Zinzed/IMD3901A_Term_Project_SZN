@@ -1065,6 +1065,8 @@ MonoBehaviour:
   wandBehaviourScript: {fileID: 538477108}
   canInteract: 0
   enemiesKilled: 0
+  wandSwing: {fileID: 0}
+  requiredBossHits: 10
 --- !u!114 &177661472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3407,6 +3409,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3691252437793210324, guid: 187463fde80dba140a039e253f7f1d83, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 69636cb909abb2046a8f209cf8e0ba94, type: 2}
+    - target: {fileID: -3691252437793210324, guid: 187463fde80dba140a039e253f7f1d83, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 69636cb909abb2046a8f209cf8e0ba94, type: 2}
+    - target: {fileID: -3691252437793210324, guid: 187463fde80dba140a039e253f7f1d83, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 69636cb909abb2046a8f209cf8e0ba94, type: 2}
     - target: {fileID: 919132149155446097, guid: 187463fde80dba140a039e253f7f1d83, type: 3}
       propertyPath: m_Name
       value: Luna
@@ -18582,6 +18596,7 @@ MonoBehaviour:
   teleView: {fileID: 687329389}
   particleDamage: 1
   particleDamageCooldown: 0.5
+  wandAnimator: {fileID: 0}
 --- !u!136 &1411060199
 CapsuleCollider:
   m_ObjectHideFlags: 0
