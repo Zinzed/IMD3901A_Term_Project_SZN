@@ -4962,6 +4962,7 @@ MonoBehaviour:
   isDead: 0
   animator: {fileID: 8598919522614722900}
   destroyDelay: 1
+  isAttacking: 0
 --- !u!65 &7460779118338449431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5032,6 +5033,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ced7f734b7347c34a9fa32ac5d80672d, type: 3}
   - {fileID: 8300000, guid: 85f1ffd70a5897d4c85549138b39f791, type: 3}
   - {fileID: 8300000, guid: ad91ba6dce04a1f4db1171f75dba68d6, type: 3}
+  fadeDuration: 0.5
+  rotationSpeed: 5
 --- !u!82 &699316513568387194
 AudioSource:
   m_ObjectHideFlags: 0
