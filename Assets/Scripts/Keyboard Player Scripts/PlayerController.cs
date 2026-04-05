@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     public CharacterController controller;
     public Transform cameraTransform;
+    public GameObject pauseMenuUI;
 
     float xRotation = 0f;
 
@@ -27,6 +28,18 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Debug.Log("Scene is updating!");
+
+        if (pauseMenuUI.activeInHierarchy)
+        {
+            // Stop the script here so it doesn't lock the mouse
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            return;
+        }
+
+        // Only lock when the menu is closed
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         Vector2 moveInput = Keyboard.current != null ? new Vector2 
             (
@@ -53,7 +66,13 @@ public class PlayerController : MonoBehaviour
             wandAnimator.SetTrigger("cast");
             
         }
-        
 
+
+    }
+
+    private void ToggleCursor(bool show)
+    {
+        Cursor.lockState = show ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = show;
     }
 }
