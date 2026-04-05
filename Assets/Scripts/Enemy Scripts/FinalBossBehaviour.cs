@@ -25,6 +25,7 @@ public class FinalBossBehaviour : MonoBehaviour
 
     [SerializeField] private AudioClip[] bossSounds;
     [SerializeField] private AudioSource bossAudioSource;
+    [SerializeField] private AudioClip bossDeathSound;
 
     private FinalBossActions bossActions;
 
@@ -34,6 +35,12 @@ public class FinalBossBehaviour : MonoBehaviour
     private Vector3 moveDirection;
 
     private Rigidbody rb;
+
+    private bool deathSoundPlayed = false;
+
+    public bool introPlaying { get; private set; }
+    public bool bossActive { get; private set; }
+    public bool IsBossDead => bossActions != null && bossActions.isDead;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,6 +64,13 @@ public class FinalBossBehaviour : MonoBehaviour
     {
         if (bossActions != null && bossActions.isDead)
         {
+            if (!deathSoundPlayed)
+            {
+                PlayBossDeathAudio();
+                deathSoundPlayed = true;
+                bossActive = false; // ensure boss is no longer considered active
+            }
+
             return;
         }
 
@@ -93,8 +107,10 @@ public class FinalBossBehaviour : MonoBehaviour
         Debug.Log("Enemies left: " + remainingEnemies.Length);
 
         // check if the number of killed enemies matches the total found at the start
-        if (remainingEnemies.Length == 0 )
+        if (remainingEnemies.Length == 0)
         {
+            if (bossSpawned) return; // prevent spawning the boss multiple times
+
             //enemiesCleared = true;
 
             if (playerProgressBars != null && playerProgressBars.Count > 0)
@@ -111,9 +127,10 @@ public class FinalBossBehaviour : MonoBehaviour
             {
                 Debug.LogError("Player has no progress script!"); // Debug missing component
             }
+
             CombinePowers();
             SpawnBoss();
-        }        
+        }
     }
 
     void SpawnBoss()
@@ -153,6 +170,9 @@ public class FinalBossBehaviour : MonoBehaviour
     {
         Debug.Log("Playing boss intro..");
 
+        introPlaying = true;
+        bossActive = false;
+
         if (bossIntro != null && playerTransform != null)
         {
             AudioSource.PlayClipAtPoint(bossIntro, playerTransform.position);
@@ -169,7 +189,10 @@ public class FinalBossBehaviour : MonoBehaviour
 
         //CombinePowers();
 
-        yield return null;
+        introPlaying = false;
+        bossActive = true;
+
+        //yield return null;
 
         StartCoroutine(BossSoundLoop());
 
@@ -330,5 +353,20 @@ public class FinalBossBehaviour : MonoBehaviour
                Quaternion.LookRotation(lookDirection),
                Time.deltaTime * 5f);
         }
+    }
+
+    void PlayBossDeathAudio()
+    {
+        if (bossAudioSource == null || bossDeathSound == null)
+            return;
+
+        bossAudioSource.Stop();
+
+        StopAllCoroutines();
+
+        //bossAudioSource.loop = false;
+        //bossAudioSource.volume = 2.0f;
+
+        AudioSource.PlayClipAtPoint(bossDeathSound, playerTransform.position, 2.0f);
     }
 }
