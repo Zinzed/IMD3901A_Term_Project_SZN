@@ -9,6 +9,9 @@ public class VRPlayerInteraction : MonoBehaviour
     public uiBehaviour uiBehaviourScript;
     public VRWandBehaviour wandBehaviourScript;
 
+    public List<progressBar> playerProgressBars = new List<progressBar>();
+    public GameObject puzzleCover;
+
     public bool canInteract;
     public int enemiesKilled;
 
@@ -145,6 +148,30 @@ public class VRPlayerInteraction : MonoBehaviour
                 bossActions.Die();
                 Debug.Log("VR Boss defeated!");
             }
+
+            //2.reveal the Puzzle
+            if (puzzleCover != null)
+            {
+                Destroy(puzzleCover);
+                Debug.Log("VR Logic: Puzzle cover removed!");
+            }
+            else
+            {
+                Debug.LogWarning("VR Logic: Puzzle Cover reference is missing in Inspector!");
+            }
+
+            if (playerProgressBars != null && playerProgressBars.Count > 0)
+            {
+                foreach (progressBar bar in playerProgressBars)
+                {
+                    if (bar != null)
+                    {
+                        Debug.Log($"VR Logic: Updating bar: {bar.name} to value {bar.slider.value + 10}");
+                        bar.UpdateProgress(10);
+                    }
+                }
+            }
+
             else
             {
                 Debug.LogError("FinalBossActions not found on boss!");
