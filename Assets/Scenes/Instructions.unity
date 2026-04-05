@@ -176,9 +176,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>1. Movement:</b> \nUse the <b><color=#89DAEF>WASD</color></b> keys
-    to move your character through the spaceship, and use the <b><color=#89DAEF>mouse</color></b>
-    for head movement.\n\r\n\n<b>2. Select Power:</b> \nPress the <b><color=#89DAEF>Spacebar</color></b>
+  m_text: "<b>1. Movement:</b> \nMove with the <b><color=#89DAEF>WASD</color></b>
+    keys through the spaceship, and use the <b><color=#89DAEF>mouse</color></b> for
+    head movement.\n\r\n\n<b>2. Select Power:</b> \nPress the <b><color=#89DAEF>Spacebar</color></b>
     key to switch between powers. The light on top of the wand will change color:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
@@ -4538,11 +4538,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>1. Navigation:</b> \nUse the <b><color=#89DAEF>left thumbstick</color></b>
-    to move your character through the spaceship, and the <b><color=#89DAEF>right
-    thumbstick</color></b> for head movement. Use the teleportation portals from
-    other rooms to the Central Hub.\n\n<b>2. Select Power:</b> \nPress the <b><color=#89DAEF>trigger</color></b>
-    to switch between powers. The light on top of the wand will change color:"
+  m_text: "<b>1. Navigation:</b> \nMove with the <b><color=#89DAEF>left thumbstick</color></b>
+    through the spaceship, and use the <b><color=#89DAEF>right thumbstick</color></b>
+    for head movement. To teleport from other rooms to the Central Hub, go inside
+    the portals and press the <b><color=#89DAEF>left trigger</color></b>.\n\n<b>2.
+    Select Power:</b> \nPress the <b><color=#89DAEF>right trigger</color></b> to
+    switch between powers. The light on top of the wand will change color:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
   m_sharedMaterial: {fileID: 7627370505618386333, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
@@ -5528,10 +5529,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: "<b>- Death:</b> \nDon't let the bar hit zero, or it's Game Over, and you
     may restart the game.\r\r\r\n\r\n<b>4. Solve the Final Puzzle:</b> \nPoint your
-    ray and press <b><color=#89DAEF>trigger</color></b> to interact with puzzle elements
-    and gather clues on Luna's whereabouts.\n\n5. The progress tracker will increase
-    as you progress through the game. Fill it to set Princess Luna free and unlock
-    your full transformation!\r\n\r"
+    ray and press the <b><color=#89DAEF>right trigger</color></b> to interact with
+    puzzle elements and gather clues on Luna's whereabouts.\n\n5. The progress tracker
+    will increase as you progress through the game. Fill it to set Princess Luna
+    free and unlock your full transformation!\r\n\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
   m_sharedMaterial: {fileID: 7627370505618386333, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
