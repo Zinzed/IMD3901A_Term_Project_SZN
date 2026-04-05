@@ -23,6 +23,13 @@ public class VRPlayerInteraction : MonoBehaviour
     { "finalBoss_mat", new Color(38/255f, 29/255f, 91/255f) } // dark purple
 };
 
+    public VRWandSwing wandSwing;
+    private int bossHits = 0;
+    public int requiredBossHits = 10;
+    private bool isBossDead = false;
+    private RaycastHit currentHit;
+    private Color currentTargetColor;
+
     void Start()
     {
         canInteract = false;
@@ -32,21 +39,21 @@ public class VRPlayerInteraction : MonoBehaviour
     {
         canInteract = false;
         enemy = null;
-        Color currentTargetColor = Color.clear;
+        //Color currentTargetColor = Color.clear;
         float sphereRadius = 0.9f;
 
        
         Vector3 rayOrigin = playerCamera != null ? playerCamera.position : transform.position;
         Vector3 rayDirection = playerCamera != null ? playerCamera.forward : transform.forward;
 
-        if (Physics.SphereCast(rayOrigin, sphereRadius, rayDirection, out RaycastHit hit, interactRange))
+        if (Physics.SphereCast(rayOrigin, sphereRadius, rayDirection, out currentHit, interactRange))
         {
-            if (hit.collider.CompareTag("Enemy"))
+            if (currentHit.collider.CompareTag("Enemy") || currentHit.collider.CompareTag("FinalEnemy"))
             {
                 canInteract = true;
 
                 //get enemy color from its material
-                Renderer enemyRenderer = hit.collider.GetComponentInChildren<Renderer>();
+                Renderer enemyRenderer = currentHit.collider.GetComponentInChildren<Renderer>();
                 if (enemyRenderer != null)
                 {
                     //pass the detected color to UI
@@ -54,7 +61,7 @@ public class VRPlayerInteraction : MonoBehaviour
                     uiBehaviourScript.SetCrosshairColor(currentTargetColor);
 
                     //Store reference
-                    enemy = hit.collider.GetComponentInParent<enemyBehaviour>();
+                    enemy = currentHit.collider.GetComponentInParent<enemyBehaviour>();
                 }
             }
             else
@@ -70,6 +77,34 @@ public class VRPlayerInteraction : MonoBehaviour
         }
 
         uiBehaviourScript.SetInteract(canInteract);
+
+        if (wandSwing != null && wandSwing.IsSwinging && canInteract)
+        {
+            Color wandColor = wandBehaviourScript.CurrentColor;
+
+            float colorDiff = Vector4.Distance(currentTargetColor, wandColor);
+
+            if (colorDiff < 0.1f)
+            {
+                if (currentHit.collider.CompareTag("FinalEnemy"))
+                {
+                    Debug.Log("VR Boss hit!");
+
+                    if (!isBossDead)
+                    {
+                        HandleBossHit(currentHit.collider.gameObject);
+                    }
+                    return;
+                }
+
+                if (enemy != null)
+                {
+                    enemy.Kill();
+                    enemiesKilled++;
+                }
+            }
+        }
+
     }
 
     public Color GetColorFromMaterialName(Renderer renderer)
@@ -90,6 +125,31 @@ public class VRPlayerInteraction : MonoBehaviour
 
         Debug.LogWarning($"No color mapping found for material: {materialName}");
         return Color.white;
+    }
+
+    void HandleBossHit(GameObject bossObj)
+    {
+        if (isBossDead) return;
+
+        bossHits++;
+        Debug.Log("VR Boss hits: " + bossHits);
+
+        if (bossHits >= requiredBossHits)
+        {
+            isBossDead = true;
+
+            FinalBossActions bossActions = bossObj.GetComponentInParent<FinalBossActions>();
+
+            if (bossActions != null)
+            {
+                bossActions.Die();
+                Debug.Log("VR Boss defeated!");
+            }
+            else
+            {
+                Debug.LogError("FinalBossActions not found on boss!");
+            }
+        }
     }
 
 }
