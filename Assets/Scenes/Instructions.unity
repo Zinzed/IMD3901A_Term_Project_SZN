@@ -177,9 +177,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<b>1. Movement:</b> \nUse the <b><color=#89DAEF>WASD</color></b> keys
-    to move your character through the spaceship.\n\r\n\n<b>2. Select Power:</b>
-    \nPress the <b><color=#89DAEF>Spacebar</color></b> key to switch between powers.
-    The light on top of the wand will change color:"
+    to move your character through the spaceship, and use the <b><color=#89DAEF>mouse</color></b>
+    for head movement.\n\r\n\n<b>2. Select Power:</b> \nPress the <b><color=#89DAEF>Spacebar</color></b>
+    key to switch between powers. The light on top of the wand will change color:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
   m_sharedMaterial: {fileID: 7627370505618386333, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
@@ -1515,7 +1515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: 301}
+  m_AnchoredPosition: {x: 18, y: 313.99994}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &637399317
@@ -1538,11 +1538,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "VR <b>3. Cast Power:</b> \nPress <b><color=#89DAEF>E</color></b> to swing
-    the magic wand and cast the selected power. \r\r\r\n\r\n<b>Health & Survival:\r\n-
-    Damage: </b>\nAvoid enemy attacks! Getting hit drains your Health Bar.\n\r\n<b>-
-    Heal:</b> \nFind a Restoration Capsule and stay still inside to instantly refill
-    your health to 100%.\n\r\r\n\r"
+  m_text: "<b>3. Cast Power:</b>  \nGet close to an enemy and <b><color=#89DAEF>swing</color></b>
+    the magic wand to cast the selected power and defeat them. \r\r\r\n\r\n<b>Health
+    & Survival:\r\n- Damage: </b>\nAvoid enemy attacks! Getting hit drains your Health
+    Bar.\n\r\n<b>- Heal:</b> \nFind a Restoration Capsule and stay still inside to
+    instantly refill your health to 100%.\n\r\r\n\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
   m_sharedMaterial: {fileID: 7627370505618386333, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
@@ -2692,7 +2692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -624.855, y: 432.26}
+  m_AnchoredPosition: {x: -623, y: 434}
   m_SizeDelta: {x: 246.542, y: 91.364}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1185182027
@@ -3947,7 +3947,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -385.5452, y: 432.26398}
+  m_AnchoredPosition: {x: -383.69022, y: 434.00394}
   m_SizeDelta: {x: 210.661, y: 91.364}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1684352815
@@ -4515,7 +4515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: 301}
+  m_AnchoredPosition: {x: 18, y: 314}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1772230344
@@ -4538,10 +4538,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "VR <b>1. Movement:</b> \nUse the <b><color=#89DAEF>WASD</color></b> keys
-    to move your character through the spaceship.\n\r\n\n<b>2. Select Power:</b>
-    \nPress the <b><color=#89DAEF>Spacebar</color></b> key to switch between powers.
-    The light on top of the wand will change color:"
+  m_text: "<b>1. Navigation:</b> \nUse the <b><color=#89DAEF>left thumbstick</color></b>
+    to move your character through the spaceship, and the <b><color=#89DAEF>right
+    thumbstick</color></b> for head movement. Use the teleportation portals from
+    other rooms to the Central Hub.\n\n<b>2. Select Power:</b> \nPress the <b><color=#89DAEF>trigger</color></b>
+    to switch between powers. The light on top of the wand will change color:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
   m_sharedMaterial: {fileID: 7627370505618386333, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
@@ -5245,11 +5246,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>3. Cast Power:</b> \nPress <b><color=#89DAEF>E</color></b> to swing
-    the magic wand and cast the selected power. \r\r\r\n\r\n<b>Health & Survival:\r\n-
-    Damage: </b>\nAvoid enemy attacks! Getting hit drains your Health Bar.\n\r\n<b>-
-    Heal:</b> \nFind a Restoration Capsule and stay still inside to instantly refill
-    your health to 100%.\n\r\r\n\r"
+  m_text: "<b>3. Cast Power:</b> \nGet close to an enemy and press <b><color=#89DAEF>E</color></b>
+    to swing the magic wand and cast the selected power to defeat them. \r\r\r\n\r\n<b>Health
+    & Survival:\r\n- Damage: </b>\nAvoid enemy attacks! Getting hit drains your Health
+    Bar.\n\r\n<b>- Heal:</b> \nFind a Restoration Capsule and stay still inside to
+    instantly refill your health to 100%.\n\r\r\n\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
   m_sharedMaterial: {fileID: 7627370505618386333, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
@@ -5502,7 +5503,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: 301}
+  m_AnchoredPosition: {x: 18, y: 313.99994}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2115941596
@@ -5525,11 +5526,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "VR <b>- Death:</b> \nDon't let the bar hit zero, or it's Game Over, and
-    you may restart the game.\r\r\r\n\r\n<b>4. Solve the Final Puzzle:</b> \n<b><color=#89DAEF>Left-click</color></b>
-    to interact with puzzle elements and gather clues on Luna's whereabouts.\n\n5.
-    The progress tracker will increase as you progress through the game. Fill it
-    to set Princess Luna free and unlock your full transformation!\r\n\r"
+  m_text: "<b>- Death:</b> \nDon't let the bar hit zero, or it's Game Over, and you
+    may restart the game.\r\r\r\n\r\n<b>4. Solve the Final Puzzle:</b> \nPoint your
+    ray and press <b><color=#89DAEF>trigger</color></b> to interact with puzzle elements
+    and gather clues on Luna's whereabouts.\n\n5. The progress tracker will increase
+    as you progress through the game. Fill it to set Princess Luna free and unlock
+    your full transformation!\r\n\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
   m_sharedMaterial: {fileID: 7627370505618386333, guid: d0452116ff17d694eb16bd6751183be3, type: 2}
