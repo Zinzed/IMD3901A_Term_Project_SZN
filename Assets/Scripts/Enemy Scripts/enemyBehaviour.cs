@@ -183,13 +183,24 @@ public class enemyBehaviour : MonoBehaviour
 
     public void Kill()
     {
+        Debug.Log("Enemy died!");
         if (isDying)
         {
             return;
         }
 
+        isDying = true;
+        isDead = true;
+
         rigidBody.linearVelocity = Vector3.zero;
         rigidBody.isKinematic = true;
+
+        enemyAttack attackScript = GetComponent<enemyAttack>();
+
+        if (attackScript != null)
+        {
+            attackScript.PlayDeathAudio();
+        }
 
         if (animator != null)
         {

@@ -20,6 +20,18 @@ public class InstructionsManager : MonoBehaviour
         UpdatePageDisplay();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            PreviousPage();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            NextPage();
+        }
+    }
+
     public void NextPage()
     {
         if (currentPageIndex < instructionPages.Count - 1)
