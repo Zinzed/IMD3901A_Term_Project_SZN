@@ -1328,6 +1328,8 @@ MonoBehaviour:
   wandBehaviourScript: {fileID: 870077517}
   canInteract: 0
   enemiesKilled: 0
+  wandSwing: {fileID: 660346871}
+  requiredBossHits: 1
 --- !u!114 &177661472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8465,6 +8467,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1451621147}
   m_SourcePrefab: {fileID: 100100000, guid: 19b12c32384977a498dfdf477a60569f, type: 3}
+--- !u!114 &660346871 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6545172323216724771, guid: 19b12c32384977a498dfdf477a60569f, type: 3}
+  m_PrefabInstance: {fileID: 660346870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbcc89c1c0cec574fb16e9516e984342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &663082518
 GameObject:
   m_ObjectHideFlags: 0
