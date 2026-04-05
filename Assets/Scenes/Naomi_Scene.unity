@@ -2147,6 +2147,9 @@ MonoBehaviour:
   musicSource: {fileID: 212661182}
   gameplayMusic: {fileID: 8300000, guid: 308d599017659934295bc8f4edb1c64a, type: 3}
   bossFightMusic: {fileID: 8300000, guid: 3484a559ab5be1c488995d2783a2188c, type: 3}
+  fadeDuration: 2
+  gameplayVolume: 0.5
+  bossFightVolume: 1
 --- !u!1 &214794602
 GameObject:
   m_ObjectHideFlags: 0
@@ -30986,19 +30989,19 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672842968}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 1b9eac7e149a51a46a6ac9671415a646, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.081
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 256
+  Priority: 209
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
