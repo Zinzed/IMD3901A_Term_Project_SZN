@@ -42,6 +42,8 @@ public class playerInteraction : MonoBehaviour
     private float lastParticleDamageTime;
     private health playerHealth;
 
+    [SerializeField] private Animator wandAnimator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -143,6 +145,7 @@ public class playerInteraction : MonoBehaviour
 
         if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
+            wandAnimator.SetTrigger("cast");
             if (enemy == null && !hit.collider.CompareTag("FinalEnemy")) return;
             // Get the wand light color from the wand script
             Color wandColor = wandBehaviourScript.CurrentColor;
