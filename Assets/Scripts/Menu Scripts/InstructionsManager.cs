@@ -1,16 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Oculus.Interaction;
 
 public class InstructionsManager : MonoBehaviour
 {
-
-    public AudioSource secondaryBttnSFX;
 
     [Header("UI References")]
     [SerializeField] private Button nextBttn;
     [SerializeField] private Button previousBttn;
     [SerializeField] private List<GameObject> instructionPages;
+    [SerializeField] private List<GameObject> tabs;
+    [SerializeField] private List<Image> tabBttns;
+    [SerializeField] private Sprite inactiveTabBG, activeTabBG;
 
     private int currentPageIndex = 0;
 
@@ -19,6 +21,34 @@ public class InstructionsManager : MonoBehaviour
         // Initialize first page
         UpdatePageDisplay();
     }
+
+    public void SwitchToTab(int tabIndex)
+    {
+        AudioManager.Instance.PlaySFX("SecondaryButton");
+        // for content panels
+        for (int i = 0; i < tabs.Count; i++)
+        {
+            tabs[i].SetActive(i == tabIndex);
+        }
+
+        //for tab buttons 
+        for (int i = 0; i < tabBttns.Count; i++)
+        {
+            if (i == tabIndex)
+            {
+                // active: white
+                tabBttns[i].color = Color.white;
+                //tabBttns[i].sprite = activeTabBG;
+            }
+            else
+            {
+                // inactive: grey
+                tabBttns[i].color = new Color(0.7f, 0.7f, 0.7f);
+                //tabBttns[i].sprite = inactiveTabBG;
+            }
+        }
+    }
+
 
     void Update()
     {
@@ -38,7 +68,7 @@ public class InstructionsManager : MonoBehaviour
         {
             currentPageIndex++;
             UpdatePageDisplay();
-            secondaryBttnSFX.Play();
+            AudioManager.Instance.PlaySFX("SecondaryButton");
         }
     }
 
@@ -48,7 +78,7 @@ public class InstructionsManager : MonoBehaviour
         {
             currentPageIndex--;
             UpdatePageDisplay();
-            secondaryBttnSFX.Play();
+            AudioManager.Instance.PlaySFX("SecondaryButton");
         }
     }
 
