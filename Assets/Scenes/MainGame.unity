@@ -2890,7 +2890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 1220865153369661551, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
-  numOfEnemies: 4
+  numOfEnemies: 2
   spawnRadius: 2
 --- !u!1001 &228179156
 PrefabInstance:
@@ -4464,7 +4464,7 @@ MonoBehaviour:
   - {fileID: 1220865153369661551, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
   - {fileID: 6298853663714301395, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
   - {fileID: 3444763468711299562, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
-  numOfEnemies: 10
+  numOfEnemies: 6
   spawnRadius: 10
 --- !u!4 &341862114 stripped
 Transform:
@@ -6598,7 +6598,7 @@ MonoBehaviour:
   - {fileID: 1220865153369661551, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
   - {fileID: 6298853663714301395, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
   - {fileID: 3444763468711299562, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
-  numOfEnemies: 12
+  numOfEnemies: 7
   spawnRadius: 9
 --- !u!1001 &528407224
 PrefabInstance:
@@ -34266,7 +34266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 3444763468711299562, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
-  numOfEnemies: 4
+  numOfEnemies: 3
   spawnRadius: 2
 --- !u!1 &1829016184
 GameObject:
@@ -34316,7 +34316,7 @@ MonoBehaviour:
   - {fileID: 1220865153369661551, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
   - {fileID: 6298853663714301395, guid: 616f5fc991e9a8241a6a3f30ef9e202d, type: 3}
   - {fileID: 3444763468711299562, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
-  numOfEnemies: 7
+  numOfEnemies: 5
   spawnRadius: 8
 --- !u!1 &1838310659
 GameObject:
