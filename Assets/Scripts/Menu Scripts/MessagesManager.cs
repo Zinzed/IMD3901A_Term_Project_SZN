@@ -17,6 +17,7 @@ public class MessagesManager : MonoBehaviour
     [SerializeField] private GameObject startBttn;
     [SerializeField] private Button nextBttn;
     [SerializeField] private Button previousBttn;
+    [SerializeField] private GameObject magicEffect;
 
     private int currentBubbleIndex = 0;
     private Coroutine typingCoroutine;
@@ -108,7 +109,15 @@ public class MessagesManager : MonoBehaviour
         {
             startBttn.SetActive(true);
             nextBttn.interactable = false;
-        }
+
+            if (magicEffect != null)
+            {
+                // enable particle effect
+                magicEffect.SetActive(true);
+                AudioManager.Instance.PlaySFX("MagicTransfer");
+            }
+
+            }
         
     }
 
