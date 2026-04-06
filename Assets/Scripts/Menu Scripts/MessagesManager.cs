@@ -17,10 +17,13 @@ public class MessagesManager : MonoBehaviour
     [SerializeField] private Button nextBttn;
     [SerializeField] private Button previousBttn;
     [SerializeField] private GameObject magicEffect;
+    [SerializeField] private GameObject magicEffect2;
+    [SerializeField] private GameObject spawnPos;
 
     private int currentBubbleIndex = 0;
     private Coroutine typingCoroutine;
     private TMP_Text currentTextComponent;
+    private bool hasSpawned = false;
 
     void Start()
     {
@@ -109,16 +112,24 @@ public class MessagesManager : MonoBehaviour
             startBttn.SetActive(true);
             nextBttn.interactable = false;
 
-            if (magicEffect != null)
+            // spawn magic effects for win scene 
+            if (magicEffect != null && magicEffect2 != null && !hasSpawned)
             {
-                // enable particle effect
-                magicEffect.SetActive(true);
-                Instantiate(magicEffect, transform.transform.position, Quaternion.identity);
+
+                Instantiate(magicEffect, spawnPos.transform.position, Quaternion.identity);
+                Invoke(nameof(SpawnSecond), 2.0f);
                 AudioManager.Instance.PlaySFX("MagicTransfer");
+                hasSpawned = true;
             }
 
-            }
+        }
         
+    }
+
+    //to spawn second effect
+    void SpawnSecond()
+    {
+        Instantiate(magicEffect2, spawnPos.transform.position, Quaternion.identity);
     }
 
     public void NextBubble()
@@ -177,6 +188,16 @@ public class MessagesManager : MonoBehaviour
             {
                 startBttn.SetActive(true);
                 nextBttn.interactable = false;
+
+                // spawn magic effects for win scene 
+                if (magicEffect != null && magicEffect2 != null && !hasSpawned)
+                {
+
+                    Instantiate(magicEffect, spawnPos.transform.position, Quaternion.identity);
+                    Invoke(nameof(SpawnSecond), 1.0f);
+                    AudioManager.Instance.PlaySFX("MagicTransfer");
+                    hasSpawned = true;
+                }
             }
         }
 
