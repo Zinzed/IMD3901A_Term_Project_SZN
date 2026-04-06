@@ -60,7 +60,16 @@ public class playerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //FOR TELESCOPE
+        if (teleView.usingTelescope) 
+        {
+            if (Keyboard.current.escapeKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                teleView.ToggleTelescope();
+                return;
+            }
+        }
+
         //Debug.Log("Update running");
         canInteract = false;
         enemy = null;
@@ -70,8 +79,11 @@ public class playerInteraction : MonoBehaviour
         RaycastHit hit;
         bool didHit = Physics.SphereCast(playerCamera.transform.position, sphereRadius, playerCamera.transform.forward, out hit, interactRange);
 
+        
+
         if (didHit)
         {
+           
             //Debug.Log("Hit: " + hit.collider.name + " Tag: " + hit.collider.tag);
             if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("FinalEnemy"))
             {
@@ -114,14 +126,13 @@ public class playerInteraction : MonoBehaviour
                 }
             }
             //FOR TELESCOPE
-            else if(hit.collider.CompareTag("Telescope"))
+            else if (hit.collider.CompareTag("Telescope"))
             {
                 canInteract = true;
-                if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+                if (!teleView.usingTelescope && Mouse.current.leftButton.wasPressedThisFrame)
                 {
-  
-                   teleView.ToggleTelescope();
-                   return;
+                    teleView.ToggleTelescope();
+                    return;
                 }
 
             }

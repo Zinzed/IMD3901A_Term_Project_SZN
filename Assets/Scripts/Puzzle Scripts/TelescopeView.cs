@@ -6,7 +6,7 @@ public class TelescopeView : MonoBehaviour
     public GameObject activeMainCamera;
     public GameObject telescopeCamera;
 
-    private bool usingTelescope = false;
+    public bool usingTelescope = false;
 
     public void ToggleTelescope()
     {
