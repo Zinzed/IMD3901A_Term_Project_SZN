@@ -211,6 +211,7 @@ public class playerInteraction : MonoBehaviour
 
         bossHits++;
         AudioManager.Instance.PlaySFX("BossMagicCasting");
+        AudioManager.Instance.PlaySFX("BossGotHit");
 
         //Debug.Log($"Boss Hit! {bossHits}/{requiredBossHits}");
         Debug.Log("Boss was hit!");

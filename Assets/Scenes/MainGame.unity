@@ -17974,6 +17974,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e0baaaa1028742c49a6de126ac9c0ecf, type: 3}
   - name: Teleport
     clip: {fileID: 8300000, guid: feb20a2aea8db4941a485812318e2f1f, type: 3}
+  - name: BossGotHit
+    clip: {fileID: 8300000, guid: 417c3e700357b104981a31c59d303aed, type: 3}
   musicSource: {fileID: 615480778}
   sfxSource: {fileID: 961705130}
 --- !u!4 &961227174
