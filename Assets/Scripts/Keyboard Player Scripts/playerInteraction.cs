@@ -201,8 +201,17 @@ public class playerInteraction : MonoBehaviour
     {
         if (isBossDead) return;
 
+        if (hitEffect != null)
+        {
+            //Spawn the effect at the boss's current position
+            GameObject tempEffect = Instantiate(hitEffect, bossObj.transform.position, Quaternion.identity);
+            tempEffect.SetActive(true);
+            Destroy(tempEffect, 2f); 
+        }
+
         bossHits++;
         AudioManager.Instance.PlaySFX("BossMagicCasting");
+        AudioManager.Instance.PlaySFX("BossGotHit");
 
         //Debug.Log($"Boss Hit! {bossHits}/{requiredBossHits}");
         Debug.Log("Boss was hit!");
