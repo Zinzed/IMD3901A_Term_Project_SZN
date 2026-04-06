@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using System.Numerics;
 using System.Net.NetworkInformation;
 
 public class MessagesManager : MonoBehaviour
@@ -114,6 +113,7 @@ public class MessagesManager : MonoBehaviour
             {
                 // enable particle effect
                 magicEffect.SetActive(true);
+                Instantiate(magicEffect, transform.transform.position, Quaternion.identity);
                 AudioManager.Instance.PlaySFX("MagicTransfer");
             }
 
