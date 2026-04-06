@@ -37,7 +37,7 @@ public class FadeTeleporter : MonoBehaviour
 
         //teleport the player to the destinations position
         GameObject.FindWithTag("Player").transform.position = destination.position;
-        AudioManager.Instance.PlaySFX("MagicTeleportPortal");
+        AudioManager.Instance.PlaySFX("Teleport");
 
         //fade back to clear
         yield return StartCoroutine(Fade(0));
