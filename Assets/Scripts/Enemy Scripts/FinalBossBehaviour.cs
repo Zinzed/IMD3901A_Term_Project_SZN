@@ -26,6 +26,7 @@ public class FinalBossBehaviour : MonoBehaviour
     [SerializeField] private AudioClip[] bossSounds;
     [SerializeField] private AudioSource bossIntroSource;
     [SerializeField] private AudioSource bossAudioSource;
+    [SerializeField] private AudioClip teleportSound;
     [SerializeField] private AudioClip bossDeathSound;
 
     private FinalBossActions bossActions;
@@ -251,6 +252,8 @@ public class FinalBossBehaviour : MonoBehaviour
 
         finalBoss.transform.position = targetPos;
         moveDirection = Vector3.zero;
+
+        bossAudioSource.PlayOneShot(teleportSound);
 
         if (bossActions != null)
         {
