@@ -1773,6 +1773,8 @@ MonoBehaviour:
   puzzleCover: {fileID: 452494096}
   canInteract: 0
   enemiesKilled: 0
+  hitCooldown: 0.5
+  hitEffect: {fileID: 639572371}
   wandSwing: {fileID: 660346871}
   requiredBossHits: 5
 --- !u!114 &177661472
@@ -7586,7 +7588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1220865153369661551, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1998105990644382421, guid: 6cf11b15482047a408d49f21bc94bb07, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8907,7 +8909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &657969411
 Transform:
   m_ObjectHideFlags: 0
@@ -37517,7 +37519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3444763468711299562, guid: e6ef05d52089bd74aacb98bffce7b15b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -17,6 +17,12 @@ public class VRPlayerInteraction : MonoBehaviour
 
     private enemyBehaviour enemy;
 
+    private float lastHitTime;
+    public float hitCooldown = 0.5f;
+
+    [Header("VFX")]
+    public GameObject hitEffect;
+
     private Dictionary<string, Color> materialColorMap = new Dictionary<string, Color>()
 {
     // enemy material names mapped to colours 
@@ -132,7 +138,17 @@ public class VRPlayerInteraction : MonoBehaviour
 
     void HandleBossHit(GameObject bossObj)
     {
-        if (isBossDead) return;
+        if (isBossDead || Time.time < lastHitTime + hitCooldown) return;
+
+        if (hitEffect != null)
+        {
+            //Spawn the effect at the boss's current position
+            GameObject tempEffect = Instantiate(hitEffect, bossObj.transform.position, Quaternion.identity);
+            tempEffect.SetActive(true);
+            Destroy(tempEffect, 2f);
+        }
+        // Set the time of this hit
+        lastHitTime = Time.time;
 
         bossHits++;
         Debug.Log("VR Boss hits: " + bossHits);
